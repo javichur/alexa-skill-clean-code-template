@@ -1,0 +1,27 @@
+{
+  "name": "alexa-skill-clean-code-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Please use vscode and press F5 to start Unit Tests and debug them\" && exit 1",
+    "eslint": "eslint .",
+    "eslint:json": "eslint -f json -o eslint-report.json .",
+    "sonar": "sonar-scanner",
+    "sonar-eslint": "npm run eslint:json || npm run sonar"
+  },
+  "author": "Javier Campos",
+  "homepage": "https://github.com/javichur/alexa-skill-clean-code-template",
+  "license": "Apache",
+  "dependencies": {
+    "ask-sdk-core": "^2.0.0",
+    "ask-sdk-model": "^1.0.0"
+  },
+  "devDependencies": {
+    "bespoken-tools": "^2.3.26",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "sonar-scanner": "^3.1.0"
+  }
+}
