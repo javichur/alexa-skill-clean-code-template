@@ -267,3 +267,11 @@ $> unrestricted
 ```
 
 **IMPORTANT**: If you create a new skill project from a skill template that contains hook scripts, ASK CLI will run them. You should only use skill templates from sources that you trust.
+
+## Useful commands
+
+1. Download a skill. it allows you to download a complete skill (including skill.json) created in your Alexa developer account.
+
+```shell
+ask clone --skill-id xxxxxxxxxxxxxxx
+```
