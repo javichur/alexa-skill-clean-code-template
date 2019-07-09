@@ -5,7 +5,7 @@ configuration:
 
 ---
 - test: Start the skill, test help and stop.
-- LaunchRequest: Welcome to the Hello World, you can say hello!
+- LaunchRequest: Welcome to the Hello World. You can say hello to me!
 - AMAZON.HelpIntent: You can say hello to me!
 - "help":
   - response.outputSpeech.ssml: You can say hello to me!

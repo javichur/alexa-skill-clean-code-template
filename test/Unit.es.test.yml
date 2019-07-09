@@ -5,7 +5,7 @@ configuration:
 
 ---
 - test: Abre la skill, prueba ayuda y salir.
-- LaunchRequest: Hola
+- LaunchRequest: Bienvenido a Hola Mundo. Puedes decirme "hola"
 - AMAZON.HelpIntent: Puedes decirme "hola"
 - "ayuda":
   - response.outputSpeech.ssml: Puedes decirme "hola"
