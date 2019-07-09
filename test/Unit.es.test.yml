@@ -9,4 +9,6 @@ configuration:
 - AMAZON.HelpIntent: Puedes decirme "hola"
 - "ayuda":
   - response.outputSpeech.ssml: Puedes decirme "hola"
-- AMAZON.StopIntent: ¡Hasta luego!
+- AMAZON.StopIntent:
+  - response.outputSpeech.ssml: ¡Hasta luego!
+  - sessionEnded: true
