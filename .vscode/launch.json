@@ -5,7 +5,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch program",
-            "program": "${workspaceRoot}/lambda/custom/node_modules/bespoken-tools/bin/bst-test.js",
+            "program": "${workspaceRoot}/node_modules/bespoken-tools/bin/bst-test.js",
             "args": ["(/test/.*|(\\.|/)test)\\.yml?$"],
             "env": {
                 // Set environment variables here

@@ -88,7 +88,9 @@ start http://localhost:9000/dashboard?id=my-new-skill
 
 3. Add text strings for all languages in `strings` folder.
 
-4. Use vscode and press F5 to start Unit Tests and **debug with breakpoints in your code**.
+4. Use vscode and press `F5` to start Unit Tests and **debug with breakpoints in your code**.
+
+Or use `npm run unit-test`
 
 5. Deploy the skill easily with cli:
 
@@ -192,9 +194,9 @@ ask simulate --locale "en-US" --text "start hello world"
 npm install bespoken-tools --save-dev
 ```
 
-Press F5 to start Unit Tests.
+And press `F5` to start Unit Tests. Or use `npm run unit-test`
 
-10. Clean code. ESLINT (with airbnb rules) + Sonar added. See package.json
+10. Clean code. ESLINT (with airbnb rules) + Sonar added. See root package.json
 
 ```shell
 npm run eslint

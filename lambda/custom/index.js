@@ -56,9 +56,9 @@ const CancelAndStopIntentHandler = {
     const speechText = t.GOODBYE;
 
     return handlerInput.responseBuilder
-    .speak(speechText)
-    .withShouldEndSession(true) // required to end session with APL support.
-    .getResponse();
+      .speak(speechText)
+      .withShouldEndSession(true) // required to end session with APL support.
+      .getResponse();
   },
 };
 

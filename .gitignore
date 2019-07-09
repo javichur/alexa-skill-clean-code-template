@@ -4,3 +4,4 @@ lambda/custom/eslint-report.json
 test_output/
 bst-debug.log
 lambda/custom/.scannerwork/
+node_modules/
