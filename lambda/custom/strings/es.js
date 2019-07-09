@@ -1,6 +1,8 @@
 module.exports = {
   SKILL_NAME: 'Hola Mundo',
-  HELP: 'Puedes decirme "hola Mundo"',
+  WELCOME_TO: 'Bienvenido a',
+  HELP: 'Puedes decirme "hola"',
   HELLO_WORLD: 'Hola Mundo',
-  GOODBYE: 'Hasta luego!',
+  GOODBYE: '¡Hasta luego!',
+  HINT_HOME: 'Di "hola", "ayuda" o "salir"',
 };

@@ -11,6 +11,16 @@
           ],
           "name": "alexa-skill-clean-code-template",
           "description": "Sample Alexa Skill with clean code and APL support"
+        },
+        "es-ES": {
+          "summary": "Ejemplo de Alexa Skill con código limpio y soporte APL",
+          "examplePhrases": [
+            "Alexa abre hola mundo",
+            "hola",
+            "ayuda"
+          ],
+          "name": "alexa-skill-clean-code-template",
+          "description": "Sample Alexa Skill with clean code and APL support"
         }
       },
       "isAvailableWorldwide": true,

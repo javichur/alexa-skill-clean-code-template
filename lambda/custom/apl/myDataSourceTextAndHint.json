@@ -1,0 +1,13 @@
+{
+  "data": {
+    "type": "object",
+    "objectId": "templateTextAndHint",
+    "backgroundImageSmall": "https://saposyprincesas.elmundo.es/wp-content/uploads/2017/10/Vista-occidental-de-la-Catedral-de-Valencia.jpg",
+    "backgroundImage": "https://img.theculturetrip.com/1024x574/smart/wp-content/uploads/2017/11/gctp0013-cervantes-spain-valencia-465.jpg",
+    "title": "<title>",
+    "text": "<text>",
+    "logoUrl": "https://images-na.ssl-images-amazon.com/images/I/41-YOr1NDoL.png",
+    "hintText": "<hintText>",
+    "overlayColor": "rgba(black,0.5)"
+  }
+}

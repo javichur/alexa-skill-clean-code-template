@@ -1,0 +1,12 @@
+---
+configuration:
+  dynamo: mock
+  locale: es-ES
+
+---
+- test: Abre la skill, prueba ayuda y salir.
+- LaunchRequest: Hola
+- AMAZON.HelpIntent: Puedes decirme "hola"
+- "ayuda":
+  - response.outputSpeech.ssml: Puedes decirme "hola"
+- AMAZON.StopIntent: ¡Hasta luego!

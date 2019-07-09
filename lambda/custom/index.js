@@ -2,23 +2,21 @@
 /* eslint-disable  no-console */
 
 const Alexa = require('ask-sdk-core');
+const settings = require('./settings.js');
+const AplTemplates = require('./apl/aplTemplates.js');
 
 let t = null; // strings. Initialized by myLocalizationInterceptor()
-let langSkill = 'en'; // current lang. Initialized by myLocalizationInterceptor()
-
+let langSkill = null; // current language ('es-ES', 'en-US', 'en', etc...)
 
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
   handle(handlerInput) {
-    const speechText = `Welcome to the ${t.SKILL_NAME}, you can say hello!`;
+    const speechText = `${t.WELCOME_TO} ${t.SKILL_NAME}. ${t.HELP}`;
 
-    return handlerInput.responseBuilder
-      .speak(speechText)
-      .reprompt(speechText)
-      .withSimpleCard(t.HELLO_WORLD, speechText)
-      .getResponse();
+    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
+      t.HINT_HOME, speechText);
   },
 };
 
@@ -30,10 +28,8 @@ const HelloWorldIntentHandler = {
   handle(handlerInput) {
     const speechText = t.HELLO_WORLD;
 
-    return handlerInput.responseBuilder
-      .speak(speechText)
-      .withSimpleCard(t.HELLO_WORLD, speechText)
-      .getResponse();
+    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
+      t.HINT_HOME, speechText);
   },
 };
 
@@ -45,11 +41,8 @@ const HelpIntentHandler = {
   handle(handlerInput) {
     const speechText = t.HELP;
 
-    return handlerInput.responseBuilder
-      .speak(speechText)
-      .reprompt(speechText)
-      .withSimpleCard(t.HELLO_WORLD, speechText)
-      .getResponse();
+    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
+      t.HINT_HOME, speechText);
   },
 };
 
@@ -62,10 +55,8 @@ const CancelAndStopIntentHandler = {
   handle(handlerInput) {
     const speechText = t.GOODBYE;
 
-    return handlerInput.responseBuilder
-      .speak(speechText)
-      .withSimpleCard(t.HELLO_WORLD, speechText)
-      .getResponse();
+    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
+      t.HINT_HOME, speechText);
   },
 };
 
@@ -113,24 +104,33 @@ const IntentReflectorHandler = {
   },
 };
 
+// Initialize 't' and 'langSkill' with user language or default language.
 const myLocalizationInterceptor = {
   process(handlerInput) {
     const langUser = handlerInput.requestEnvelope.request.locale;
 
     if (langUser) {
-      const setEs = new Set(['es', 'es-ES', 'es-MX', 'es-US']);
-      // const setEn = new Set(['en', 'en-US', 'en-GB', 'en-CA', 'en-IN', 'en-AU']);
-
-      if (setEs.has(langUser)) {
-        langSkill = 'es';
-        t = require('./strings/es.js'); // eslint-disable-line global-require
+      try {
+        t = require(`./strings/${langUser}.js`); // eslint-disable-line global-require
+        langSkill = langUser;
         return;
+      } catch (e) {
+        console.log(`Error reading strings. langUser: ${langUser}`);
+      }
+
+      const lang = langUser.split('-')[0];
+      try {
+        t = require(`./strings/${lang}.js`); // eslint-disable-line global-require
+        langSkill = lang;
+        return;
+      } catch (e) {
+        console.log(`Error reading strings. lang: ${lang}`);
       }
     }
 
     // default lang
-    langSkill = 'en';
-    t = require('./strings/en.js'); // eslint-disable-line global-require
+    langSkill = settings.DEFAULT_LANGUAGE;
+    t = require(`./strings/${langSkill}.js`); // eslint-disable-line global-require
   },
 };
 

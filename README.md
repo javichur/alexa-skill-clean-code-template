@@ -2,11 +2,44 @@
 
 <https://github.com/javichur/alexa-skill-clean-code-template>
 
-## Setup
+## Initial Setup
 
-- ASK CLI (`npm install -g ask-cli`)
-- Visual Code (<https://code.visualstudio.com/)>
-- Alexa Skill Kit (ASK) Toolkit for vscode (<https://marketplace.visualstudio.com/items?itemName=ask-toolkit.alexa-skills-kit-toolkit>)
+1. Install ASK CLI (`npm install -g ask-cli`)
+
+2. Install Visual Code (<https://code.visualstudio.com/)>
+
+3. Install Alexa Skill Kit (ASK) Toolkit for vscode (<https://marketplace.visualstudio.com/items?itemName=ask-toolkit.alexa-skills-kit-toolkit>)
+
+4. You must edit ~/.aws/credentials file to add a valid AWS profile (aws_access_key_id, aws_secret_access_key) with the following policy:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": {
+    "Effect": "Allow",
+    "Action": [
+      "iam:CreateRole",
+      "iam:GetRole",
+      "iam:AttachRolePolicy",
+      "iam:PassRole",
+      "lambda:AddPermission",
+      "lambda:CreateFunction",
+      "lambda:GetFunction",
+      "lambda:UpdateFunctionCode",
+      "lambda:ListFunctions",
+      "logs:FilterLogEvents",
+      "logs:getLogEvents",
+      "logs:describeLogStreams"
+    ],
+    "Resource": "*"
+  }
+}
+```
+
+More info:
+
+- <https://developer.amazon.com/es/docs/smapi/manage-credentials-with-ask-cli.html>
+- <https://docs.aws.amazon.com/es_es/cli/latest/userguide/cli-chap-configure.html>
 
 ## How to create a new Alexa Skill using this template
 
@@ -15,8 +48,6 @@
 ```shell
 ask init
 ```
-
-You must edit ~/.aws/credentials file to add a valid AWS profile (aws_access_key_id, aws_secret_access_key). More info: <https://docs.aws.amazon.com/es_es/cli/latest/userguide/cli-chap-configure.html>
 
 2. Create a new skill from this template (<https://github.com/javichur/alexa-skill-clean-code-template>):
 
@@ -30,6 +61,14 @@ ask new --url https://github.com/javichur/alexa-skill-clean-code-template.git
 ```shell
 cd my-new-skill/lambda/custom
 npm install
+```
+
+4. Develop your awesome Alexa Skill! Take advantage of this template!
+
+5. Deploy the skill easily with cli:
+
+```shell
+ask deploy
 ```
 
 ## How to take advantage of this template
@@ -147,11 +186,13 @@ Alexa >  Hello World!
 ask simulate --locale "en-US" --text "start hello world"
 ```
 
-9. Automating Unit Tests using Bespoken Tools.
+9. Automating Unit Tests using Bespoken Tools. `.vscode/launch.json` edited.
 
 ```shell
 npm install bespoken-tools --save-dev
 ```
+
+Press F5 to start Unit Tests.
 
 10. Clean code. ESLINT (with airbnb rules) + Sonar added. See package.json
 
@@ -160,13 +201,17 @@ npm run eslint
 npm run sonar-eslint
 ```
 
-11. Location. `addRequestInterceptors()` string files added and strings replaced.
+11. Locale. Add `addRequestInterceptors()` interceptor.
 
-12. Refactor handlers.
+12. Add text strings for all languages in `strings` folder.
 
-13. `IntentReflectorHandler` added.
+13. Add `es-ES` language in `skill.json`.
 
-14. Add APL support in Skill Manifest (<https://developer.amazon.com/es/docs/alexa-presentation-language/apl-select-the-viewport-profiles-your-skill-supports.html>).
+14. Refactor handlers. // TODO
+
+15. `IntentReflectorHandler` added.
+
+16. Add APL support in Skill Manifest (<https://developer.amazon.com/es/docs/alexa-presentation-language/apl-select-the-viewport-profiles-your-skill-supports.html>).
 
 ```json
 "interfaces": [
@@ -218,13 +263,13 @@ npm run sonar-eslint
 ],
 ```
 
-15. Add APL templates `/apl`.
+16. Add APL templates `/apl`.
 // TODO
 
-16. Use APL with components.
+18. Use APL with components.
 // TODO
 
-17. Access to DynamoDB
+19. Access to DynamoDB
 
 ```shell
 npm install dynamola
@@ -251,10 +296,10 @@ myDb.getItem(userID).then((data) => {
 
 // TODO
 
-18. Acess to external APIs
+20. Acess to external APIs.
 // TODO
 
-19. Deploy using Alias and Lambda versions.
+21. Deploy using Alias and Lambda versions.
 // TODO
 
 ## Known problems
