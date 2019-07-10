@@ -1,9 +1,14 @@
-/* eslint-disable  func-names */
 /* eslint-disable  no-console */
+/* eslint-disable global-require */
 
 const Alexa = require('ask-sdk-core');
-const settings = require('./settings.js');
+
+const Settings = require('./settings.js');
 const AplTemplates = require('./apl/aplTemplates.js');
+const SessionState = require('./data/sessionState.js');
+
+// GlobalHandlers: ErrorHandler, SessionEndedRequestHandler...
+const GlobalHandlers = require('./handlers/globalHandlers.js');
 
 let t = null; // strings. Initialized by myLocalizationInterceptor()
 let langSkill = null; // current language ('es-ES', 'en-US', 'en', etc...)
@@ -12,7 +17,9 @@ const LaunchRequestHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
-  handle(handlerInput) {
+  async handle(handlerInput) {
+    SessionState.setCurrentState(handlerInput, SessionState.STATES.LAUNCH);
+
     const speechText = `${t.WELCOME_TO} ${t.SKILL_NAME}. ${t.HELP}`;
 
     return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
@@ -26,6 +33,8 @@ const HelloWorldIntentHandler = {
       && handlerInput.requestEnvelope.request.intent.name === 'HelloWorldIntent';
   },
   handle(handlerInput) {
+    SessionState.setCurrentState(handlerInput, SessionState.STATES.HELLO_WORLD);
+
     const speechText = t.HELLO_WORLD;
 
     return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
@@ -39,6 +48,8 @@ const HelpIntentHandler = {
       && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent';
   },
   handle(handlerInput) {
+    SessionState.setCurrentState(handlerInput, SessionState.STATES.HELP);
+
     const speechText = t.HELP;
 
     return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
@@ -53,56 +64,27 @@ const CancelAndStopIntentHandler = {
         || handlerInput.requestEnvelope.request.intent.name === 'AMAZON.StopIntent');
   },
   handle(handlerInput) {
-    const speechText = t.GOODBYE;
-
-    return handlerInput.responseBuilder
-      .speak(speechText)
-      .withShouldEndSession(true) // required to end session with APL support.
-      .getResponse();
+    return GlobalHandlers.CancelAndStop(handlerInput, t);
   },
 };
 
-const SessionEndedRequestHandler = {
+/**
+ * Sample: handler using API call.
+ */
+const UseApiRequestHandler = {
   canHandle(handlerInput) {
-    return handlerInput.requestEnvelope.request.type === 'SessionEndedRequest';
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+      && handlerInput.requestEnvelope.request.intent.name === 'UseApiIntent';
   },
-  handle(handlerInput) {
-    console.log(`Session ended with reason: ${handlerInput.requestEnvelope.request.reason}`);
+  async handle(handlerInput) {
+    const API = require('./data/api.js');
+    const respuestaApi = await API.getInfoAPI();
 
-    return handlerInput.responseBuilder.getResponse();
-  },
-};
+    const ret = (!respuestaApi) ? 'nada' : `${respuestaApi.length} caracteres`;
+    const speechText = `La API devolvió ${ret}.`;
 
-const ErrorHandler = {
-  canHandle() {
-    return true;
-  },
-  handle(handlerInput, error) {
-    console.log(`Error handled: ${error.message}`);
-
-    return handlerInput.responseBuilder
-      .speak('Sorry, I can\'t understand the command. Please say again.')
-      .reprompt('Sorry, I can\'t understand the command. Please say again.')
-      .getResponse();
-  },
-};
-
-// The intent reflector is used for interaction model testing and debugging.
-// It will simply repeat the intent the user said. You can create custom handlers
-// for your intents by defining them above, then also adding them to the request
-// handler chain below.
-const IntentReflectorHandler = {
-  canHandle(handlerInput) {
-    return handlerInput.requestEnvelope.request.type === 'IntentRequest';
-  },
-  handle(handlerInput) {
-    const intentName = handlerInput.requestEnvelope.request.intent.name;
-    const speechText = `You just triggered ${intentName}. Language is ${langSkill}`;
-
-    return handlerInput.responseBuilder
-      .speak(speechText)
-      // .reprompt('add a reprompt if you want to keep the session open for the user to respond')
-      .getResponse();
+    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
+      t.HINT_HOME, speechText);
   },
 };
 
@@ -113,7 +95,7 @@ const myLocalizationInterceptor = {
 
     if (langUser) {
       try {
-        t = require(`./strings/${langUser}.js`); // eslint-disable-line global-require
+        t = require(`./strings/${langUser}.js`); // eslint-disable-line import/no-dynamic-require
         langSkill = langUser;
         return;
       } catch (e) {
@@ -122,7 +104,7 @@ const myLocalizationInterceptor = {
 
       const lang = langUser.split('-')[0];
       try {
-        t = require(`./strings/${lang}.js`); // eslint-disable-line global-require
+        t = require(`./strings/${lang}.js`); // eslint-disable-line import/no-dynamic-require
         langSkill = lang;
         return;
       } catch (e) {
@@ -131,8 +113,8 @@ const myLocalizationInterceptor = {
     }
 
     // default lang
-    langSkill = settings.DEFAULT_LANGUAGE;
-    t = require(`./strings/${langSkill}.js`); // eslint-disable-line global-require
+    langSkill = Settings.DEFAULT_LANGUAGE;
+    t = require(`./strings/${langSkill}.js`); // eslint-disable-line import/no-dynamic-require
   },
 };
 
@@ -145,9 +127,10 @@ exports.handler = skillBuilder
     HelloWorldIntentHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,
-    SessionEndedRequestHandler,
-    IntentReflectorHandler, // last
+    GlobalHandlers.SessionEndedRequestHandler,
+    UseApiRequestHandler, // API sample
+    GlobalHandlers.IntentReflectorHandler, // last
   )
   .addRequestInterceptors(myLocalizationInterceptor)
-  .addErrorHandlers(ErrorHandler)
+  .addErrorHandlers(GlobalHandlers.ErrorHandler)
   .lambda();

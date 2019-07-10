@@ -209,7 +209,7 @@ npm run sonar-eslint
 
 13. Add `es-ES` language in `skill.json`.
 
-14. Refactor handlers. // TODO
+14. Refactor handlers. See `/handlers/globalHandlers.js`.
 
 15. `IntentReflectorHandler` added.
 
@@ -266,7 +266,6 @@ npm run sonar-eslint
 ```
 
 16. Add APL templates `/apl`.
-// TODO
 
 18. Use APL with components.
 // TODO
@@ -298,10 +297,11 @@ myDb.getItem(userID).then((data) => {
 
 // TODO
 
-20. Acess to external APIs.
-// TODO
+20. Work with session. See `/data/sessionState.js`.
 
-21. Deploy using Alias and Lambda versions.
+21. Access to external APIs. Check `/data/api.js` and `UseApiRequestHandler` (`index.js`).
+
+22. Deploy using Alias and Lambda versions.
 // TODO
 
 ## Known problems
