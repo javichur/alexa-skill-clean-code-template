@@ -10,5 +10,5 @@ module.exports = {
       primaryText: '<the title two>',
       secondaryText: '<subtitle two>',
     },
-  ]
+  ],
 };

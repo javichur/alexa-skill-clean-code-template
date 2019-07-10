@@ -52,9 +52,9 @@ const HelpIntentHandler = {
 
     const speechText = t.HELP;
 
-    const list = require('data/mocks/mockList.js').list;
+    const MockList = require('./data/mocks/mockList.js');
 
-    return AplTemplates.getAplListOrVoice(handlerInput, t.SKILL_NAME, list,
+    return AplTemplates.getAplListOrVoice(handlerInput, t.SKILL_NAME, MockList.list,
       t.HINT_HOME, speechText);
   },
 };

@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "vulnerabilities": "npm audit"
+  },
   "author": "Javier Campos",
   "homepage": "https://github.com/javichur/alexa-skill-clean-code-template",
   "license": "Apache",
