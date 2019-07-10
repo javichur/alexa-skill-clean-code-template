@@ -1,0 +1,50 @@
+{
+  "listTemplate1Metadata": {
+    "type": "object",
+    "backgroundImageSmall": "https://saposyprincesas.elmundo.es/wp-content/uploads/2017/10/Vista-occidental-de-la-Catedral-de-Valencia.jpg",
+    "backgroundImage": "https://img.theculturetrip.com/1024x574/smart/wp-content/uploads/2017/11/gctp0013-cervantes-spain-valencia-465.jpg",
+    "overlayColor": "rgba(0, 0, 0, 0.6)",
+    "title": "title",
+    "logoUrl": "https://images-na.ssl-images-amazon.com/images/I/41-YOr1NDoL.png"
+  },
+  "listTemplate1ListData": {
+    "listId": "listado",
+    "listItems": [
+      {
+        "ordinalNumber": 1,
+        "primaryText": "<title 1>",
+        "secondaryText": "<subtitle 1>"
+      },
+      {
+        "ordinalNumber": 2,
+        "primaryText": "<title 2>",
+        "secondaryText": "<subtitle 2>"
+      },
+      {
+        "ordinalNumber": 2,
+        "primaryText": "<title 2>",
+        "secondaryText": "<subtitle 2>"
+      },
+      {
+        "ordinalNumber": 6,
+        "primaryText": "<title 2>",
+        "secondaryText": "<subtitle 2>"
+      },
+      {
+        "ordinalNumber": 7,
+        "primaryText": "<title 2>",
+        "secondaryText": "<subtitle 2>"
+      },
+      {
+        "ordinalNumber": 8,
+        "primaryText": "<title 2>",
+        "secondaryText": "<subtitle 2>"
+      },
+      {
+        "ordinalNumber": 9,
+        "primaryText": "<title 2>",
+        "secondaryText": "<subtitle 2>"
+      }
+    ]
+  }
+}

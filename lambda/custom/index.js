@@ -52,7 +52,9 @@ const HelpIntentHandler = {
 
     const speechText = t.HELP;
 
-    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
+    const list = require('data/mocks/mockList.js').list;
+
+    return AplTemplates.getAplListOrVoice(handlerInput, t.SKILL_NAME, list,
       t.HINT_HOME, speechText);
   },
 };
@@ -65,6 +67,35 @@ const CancelAndStopIntentHandler = {
   },
   handle(handlerInput) {
     return GlobalHandlers.CancelAndStop(handlerInput, t);
+  },
+};
+
+const EventHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === 'Alexa.Presentation.APL.UserEvent';
+  },
+  async handle(handlerInput) {
+    const args = handlerInput.requestEnvelope.request.arguments;
+    const event = args[0];
+
+    let speechText = '';
+    switch (event) {
+      case 'ListadoItemSelected':
+        // TODO. id selected = args[1]
+        speechText = `has pulsado item número ${args[1]}.`;
+        return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
+          t.HINT_HOME, speechText);
+
+      case 'BackFromListado':
+        // TODO
+        speechText = 'has pulsado atrás';
+        return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
+          t.HINT_HOME, speechText);
+
+      default:
+        // Caso imposible.
+        return null;
+    }
   },
 };
 
@@ -126,6 +157,7 @@ exports.handler = skillBuilder
     LaunchRequestHandler,
     HelloWorldIntentHandler,
     HelpIntentHandler,
+    EventHandler, // taps en pantalla APL
     CancelAndStopIntentHandler,
     GlobalHandlers.SessionEndedRequestHandler,
     UseApiRequestHandler, // API sample

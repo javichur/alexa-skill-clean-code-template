@@ -265,12 +265,13 @@ npm run sonar-eslint
 ],
 ```
 
-16. Add APL templates `/apl`.
+17. Add APL templates `/apl`.
 
-18. Use APL with components.
-// TODO
+18. Use APL with custom layoyts (`VerticalListItem` in `documentListado.json`).
 
-19. Access to DynamoDB
+19. Use APL events (`headerNavigationAction` and `TouchWrapper.onPress` in `documentListado.json`).
+
+20. Access to DynamoDB
 
 ```shell
 npm install dynamola
@@ -297,11 +298,13 @@ myDb.getItem(userID).then((data) => {
 
 // TODO
 
-20. Work with session. See `/data/sessionState.js`.
+21. Work with session. See `/data/sessionState.js`.
 
-21. Access to external APIs. Check `/data/api.js` and `UseApiRequestHandler` (`index.js`).
+22. Access to external APIs. Check `/data/api.js` and `UseApiRequestHandler` (`index.js`).
 
-22. Deploy using Alias and Lambda versions.
+23. Mock info `/data/mocks`.
+
+24. Deploy using Alias and Lambda versions.
 // TODO
 
 ## Known problems

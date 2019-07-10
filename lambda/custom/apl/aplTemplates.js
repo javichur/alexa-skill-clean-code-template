@@ -35,4 +35,33 @@ module.exports = {
       .withSimpleCard(title, speechText)
       .getResponse();
   },
+
+  getAplListOrVoice(handlerInput, title, list, hint, speechText) {
+    if (handlerInput.requestEnvelope.context.System.device.supportedInterfaces['Alexa.Presentation.APL']) {
+      /* si hay soporte APL... */
+      const docu = require('./documentListado.json'); // eslint-disable-line global-require
+      const d = require('./myDataSourceListado'); // eslint-disable-line global-require
+
+      d.listTemplate1Metadata.title = title;
+      d.listTemplate1ListData.listItems = list;
+      d.listTemplate1Metadata.hintText = hint;
+
+      return handlerInput.responseBuilder
+        .speak(speechText)
+        .reprompt(speechText)
+        .addDirective({
+          type: 'Alexa.Presentation.APL.RenderDocument',
+          version: '1.0',
+          document: docu,
+          datasources: d,
+        })
+        .getResponse();
+    }
+
+    return handlerInput.responseBuilder
+      .speak(speechText)
+      .reprompt(speechText)
+      .withSimpleCard(title, speechText)
+      .getResponse();
+  },
 };
