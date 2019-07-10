@@ -74,28 +74,9 @@ const EventHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'Alexa.Presentation.APL.UserEvent';
   },
-  async handle(handlerInput) {
-    const args = handlerInput.requestEnvelope.request.arguments;
-    const event = args[0];
-
-    let speechText = '';
-    switch (event) {
-      case 'ListadoItemSelected':
-        // TODO. id selected = args[1]
-        speechText = `has pulsado item número ${args[1]}.`;
-        return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
-          t.HINT_HOME, speechText);
-
-      case 'BackFromListado':
-        // TODO
-        speechText = 'has pulsado atrás';
-        return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
-          t.HINT_HOME, speechText);
-
-      default:
-        // Caso imposible.
-        return null;
-    }
+  handle(handlerInput) {
+    const AplUserEventHandler = require('./handlers/aplUserEventHandler.js');
+    return AplUserEventHandler.AplUserEvent(handlerInput, t);
   },
 };
 
@@ -108,14 +89,8 @@ const UseApiRequestHandler = {
       && handlerInput.requestEnvelope.request.intent.name === 'UseApiIntent';
   },
   async handle(handlerInput) {
-    const API = require('./data/api.js');
-    const respuestaApi = await API.getInfoAPI();
-
-    const ret = (!respuestaApi) ? 'nada' : `${respuestaApi.length} caracteres`;
-    const speechText = `La API devolvió ${ret}.`;
-
-    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
-      t.HINT_HOME, speechText);
+    const ApiHandlers = require('./handlers/apiHandlers.js');
+    return ApiHandlers.UseApiRequest(handlerInput, t);
   },
 };
 
