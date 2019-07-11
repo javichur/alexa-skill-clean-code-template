@@ -2,6 +2,11 @@
 
 <https://github.com/javichur/alexa-skill-clean-code-template>
 
+Alexa Skill Template with clean code (eslint, sonar), testing (unit tests, e2e), multi-languge and Alexa Presentation Language (APL) support
+
+Made with ❤️ by Javier Campos (https://javiercampos.es)
+Available on the [AWS Serverless Application Repository].
+
 ## Initial Setup
 
 1. Install ASK CLI (`npm install -g ask-cli`)
@@ -97,6 +102,8 @@ Or use `npm run unit-test`
 ```shell
 ask deploy
 ```
+
+6. Run e2e tests. Use `npm run e2e-test`. You must get a free access token for a virtual device in <https://apps.bespoken.io/dashboard/virtualdevice> and paste it in `testing.json` file.
 
 ## How this template was created from Amazon-provided "Hello world" template
 
@@ -304,7 +311,9 @@ myDb.getItem(userID).then((data) => {
 
 23. Mock info `/data/mocks`.
 
-24. Deploy using Alias and Lambda versions.
+24. Tests e2e added. Use `npm run e2e-test`. You must get a free access token for a virtual device in <https://apps.bespoken.io/dashboard/virtualdevice> and paste it in `testing.json` file.
+
+25. Deploy using Alias and Lambda versions.
 // TODO
 
 ## Known problems

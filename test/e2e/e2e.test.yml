@@ -1,0 +1,9 @@
+---
+configuration:
+  locale: en-US
+  voiceId: Joey
+
+---
+- test: abrir la skill y nada más
+- start hello world: welcome to the hello world you can say hello to me
+- stop: goodbye

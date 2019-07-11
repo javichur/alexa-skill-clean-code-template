@@ -5,7 +5,8 @@
     "eslint:json": "eslint -f json -o eslint-report.json ./lambda/custom",
     "sonar": "sonar-scanner",
     "sonar-eslint": "npm run eslint:json || npm run sonar",
-    "unit-test": "node ./node_modules/bespoken-tools/bin/bst-test.js"
+    "unit-test": "node ./node_modules/bespoken-tools/bin/bst-test.js ./test/unit/*",
+    "e2e-test": "echo \"Don't forget to paste your access token in 'testing.json'.\" && node ./node_modules/bespoken-tools/bin/bst-test.js ./test/e2e/* --type=e2e"
   },
   "author": "Javier Campos",
   "homepage": "https://github.com/javichur/alexa-skill-clean-code-template",

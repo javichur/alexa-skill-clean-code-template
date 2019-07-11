@@ -4,9 +4,9 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch program",
+            "name": "Test Alexa Skill",
             "program": "${workspaceRoot}/node_modules/bespoken-tools/bin/bst-test.js",
-            "args": ["(/test/.*|(\\.|/)test)\\.yml?$"],
+            "args": ["/test/unit/Unit.*test.yml?$"],
             "env": {
                 // Set environment variables here
             }

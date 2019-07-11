@@ -1,7 +1,13 @@
 {
-    "handler": "./lambda/custom/index.js",
-    "trace": false,
-    "jest": {
-      "silent": false
+  "handler": "./lambda/custom/index.js",
+  "trace": false,
+  "jest": {
+    "silent": false
+  },
+  "virtualDeviceToken": {
+    "alexa": {
+      "es-ES": "Get free access token here https://apps.bespoken.io/dashboard/virtualdevice",
+      "en-US": "Get free token here https://apps.bespoken.io/dashboard/virtualdevice"
     }
   }
+}
