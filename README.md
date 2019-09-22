@@ -306,7 +306,7 @@ myDb.getItem(userID).then((data) => {
 
 // TODO
 
-21. Work with session. See `/data/sessionState.js`.
+21. Work with session. See `/data/sessionState.js`, and following intents: `SaveSessionIntent` and `LoadSessionIntent`.
 
 22. Access to external APIs. Check `/data/api.js` and `UseApiRequestHandler` (`index.js`).
 

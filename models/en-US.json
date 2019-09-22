@@ -43,6 +43,26 @@
             "check if you have the permissions",
             "permission"
           ]
+        },
+        {
+          "name": "SaveSessionIntent",
+          "samples": [
+            "save",
+            "save session",
+            "save in session",
+            "store in sassion",
+            "save the session"
+          ]
+        },
+        {
+          "name": "LoadSessionIntent",
+          "samples": [
+            "load",
+            "load session",
+            "load from session",
+            "load the session",
+            "read session"
+          ]
         }
       ]
     }

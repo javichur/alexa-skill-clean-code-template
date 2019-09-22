@@ -46,6 +46,27 @@
             "comprueba si tienes los permisos",
             "permiso"
           ]
+        },
+        {
+          "name": "SaveSessionIntent",
+          "samples": [
+            "guardar",
+            "guardar sesión",
+            "guardar en sesión",
+            "almacena en sesión",
+            "guarda sesión"
+          ]
+        },
+        {
+          "name": "LoadSessionIntent",
+          "samples": [
+            "cargar",
+            "cargar sesión",
+            "cargar de sesión",
+            "leer de sesión",
+            "leer sesión",
+            "lee sesión"
+          ]
         }
       ]
     }

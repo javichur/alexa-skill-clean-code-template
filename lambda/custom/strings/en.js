@@ -7,4 +7,7 @@ module.exports = {
   HINT_HOME: 'Say "hello", "help", "check permissions", "use api" or "bye"',
   ASK_PERMISSIONS: 'Check your Alexa mobile app to give me the permissions. See you later!',
   THANKS_NAME_PERMISSIONS: 'Thanks you {0}, you have accepted the permissions.',
+  SESSION_NOT_SAVED_YET: 'You haven\'t saved a value in the skill session yet. Say "save session".',
+  SESSION_LOADED: 'I just read the value {0} from the skill session.',
+  SESSION_SAVED: 'I just saved the {0} value to the skill session. Say "load session".',
 };

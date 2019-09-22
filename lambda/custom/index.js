@@ -53,6 +53,41 @@ const CheckPermissionsIntentHandler = {
   },
 };
 
+const SaveSessionIntentHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+      && handlerInput.requestEnvelope.request.intent.name === 'SaveSessionIntent';
+  },
+  handle(handlerInput) {
+    let speechText = '';
+    const valor = Math.floor((Math.random() * 10) + 1);
+    SessionState.setTestAttribute(handlerInput, valor);
+    speechText = t.SESSION_SAVED.replace('{0}', valor);
+
+    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
+      t.HINT_HOME, speechText);
+  },
+};
+
+const LoadSessionIntentHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+      && handlerInput.requestEnvelope.request.intent.name === 'LoadSessionIntent';
+  },
+  handle(handlerInput) {
+    let speechText = '';
+    const valor = SessionState.getTestAttribute(handlerInput);
+    if (!valor) {
+      speechText = t.SESSION_NOT_SAVED_YET;
+    } else {
+      speechText = t.SESSION_LOADED.replace('{0}', valor);
+    }
+
+    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
+      t.HINT_HOME, speechText);
+  },
+};
+
 const HelpIntentHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
@@ -144,6 +179,8 @@ exports.handler = skillBuilder
     HelloWorldIntentHandler,
     HelpIntentHandler,
     CheckPermissionsIntentHandler,
+    SaveSessionIntentHandler,
+    LoadSessionIntentHandler,
     EventHandler, // taps en pantalla APL
     CancelAndStopIntentHandler,
     GlobalHandlers.SessionEndedRequestHandler,
