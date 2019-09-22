@@ -38,9 +38,9 @@
           "name": "CheckPermisionsIntent",
           "samples": [
             "permissions",
-            "check permissions",
-            "check permissions",
-            "check if you have the permissions",
+            "check permissions",
+            "check permission",
+            "check if you have the permissions",
             "permission"
           ]
         }

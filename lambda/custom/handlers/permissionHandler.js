@@ -5,10 +5,11 @@ const Settings = require('../settings.js');
 
 module.exports = {
 
+  // ask permissions. You must add permissions in "skill.json" first.
   AskPermissionsPromptInAlexaApp(handlerInput, t) {
     return handlerInput.responseBuilder
       .speak(t.ASK_PERMISSIONS)
-      .withAskForPermissionsConsentCard(Settings.PERMISSIONS) // ask permissions
+      .withAskForPermissionsConsentCard(Settings.PERMISSIONS)
       .withShouldEndSession(true) // required to end session with APL support.
       .getResponse();
   },
@@ -16,6 +17,7 @@ module.exports = {
   /**
    * Comprueba si el usuario ha aceptado los permisos. Si no, le pide que abra la app Alexa
    * para aceptarlos.
+   * Importante: Añade los permisos que quieras solicitar en "skill.json" antes de desplegar.
    *
    * @param {*} handlerInput
    * @param {*} t localized strings.

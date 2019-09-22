@@ -152,4 +152,5 @@ exports.handler = skillBuilder
   )
   .addRequestInterceptors(myLocalizationInterceptor)
   .addErrorHandlers(GlobalHandlers.ErrorHandler)
+  .withApiClient(new Alexa.DefaultApiClient()) // API to get user permissions
   .lambda();

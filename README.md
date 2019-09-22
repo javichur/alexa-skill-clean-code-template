@@ -73,6 +73,7 @@ npm install
 5. Deploy the skill easily with cli:
 
 ```shell
+cd my-new-skill
 ask deploy
 ```
 
