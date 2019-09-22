@@ -1,10 +1,10 @@
 module.exports = {
   SKILL_NAME: 'Hola Mundo',
   WELCOME_TO: 'Bienvenido a',
-  HELP: 'Puedes decirme "hola", "ayuda", "comprobar permisos", "usar api" o "salir"',
+  HELP: 'Puedes decirme "hola", "ayuda", "comprobar permisos", "usar api", "guardar sesión", "leer sesión" o "salir"',
   HELLO_WORLD: 'Hola Mundo',
   GOODBYE: '¡Hasta luego!',
-  HINT_HOME: 'Di "hola", "ayuda", "comprobar permisos", "usar api" o "salir"',
+  HINT_HOME: 'Di "hola", "ayuda", "comprobar permisos", "usar api", "guardar sesión", "leer sesión" o "salir"',
   ASK_PERMISSIONS: 'Revisa tu app móvil de Alexa para darme los permisos necesarios. ¡Hasta luego!',
   THANKS_NAME_PERMISSIONS: 'Gracias {0}, has aceptado los permisos.',
   SESSION_NOT_SAVED_YET: 'Aún no has guardado un valor en la sesión de la skill. Di "guardar sesión".',
