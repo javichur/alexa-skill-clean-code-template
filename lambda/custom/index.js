@@ -88,6 +88,21 @@ const LoadSessionIntentHandler = {
   },
 };
 
+const ColorIntentHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+      && handlerInput.requestEnvelope.request.intent.name === 'ColorIntent';
+  },
+  handle(handlerInput) {
+    const color = handlerInput.requestEnvelope.request.intent.slots.colorSlot.value;
+    const speechText = t.COLOR_SAID.replace('{0}', color);
+
+    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
+      t.HINT_HOME, speechText);
+  },
+};
+
+
 const HelpIntentHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
@@ -184,6 +199,7 @@ exports.handler = skillBuilder
     CheckPermissionsIntentHandler,
     SaveSessionIntentHandler,
     LoadSessionIntentHandler,
+    ColorIntentHandler,
     EventHandler, // taps en pantalla APL
     CancelAndStopIntentHandler,
     GlobalHandlers.SessionEndedRequestHandler,

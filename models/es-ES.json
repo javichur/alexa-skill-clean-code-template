@@ -68,6 +68,20 @@
             "leer sesión",
             "lee sesión"
           ]
+        },
+        {
+          "name": "ColorIntent",
+          "slots": [
+            {
+              "name": "colorSlot",
+              "type": "AMAZON.Color"
+            }
+          ],
+          "samples": [
+            "{colorSlot}",
+            "color {colorSlot}",
+            "elijo el color {colorSlot}"
+          ]
         }
       ]
     }

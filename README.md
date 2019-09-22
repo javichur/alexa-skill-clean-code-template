@@ -12,6 +12,7 @@ Available on the [AWS Serverless Application Repository].
 - [x] Load and save info from/to session (LoadSessionIntent, SaveSessionIntent).
 - [x] Using external APIs (UseApiIntent).
 - [x] Get user info like name, email or phone (CheckPermisionsIntent).
+- [x] Using built-in slots (ColorIntent).
 - [x] APL touch support (ListadoItemSelected).
 - [x] And more...
 
