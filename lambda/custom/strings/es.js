@@ -1,7 +1,7 @@
 module.exports = {
   SKILL_NAME: 'Hola Mundo',
   WELCOME_TO: 'Bienvenido a',
-  HELP: 'Puedes decirme "hola"',
+  HELP: 'Puedes decirme "hola", "ayuda", "comprobar permisos", "usar api" o "salir"',
   HELLO_WORLD: 'Hola Mundo',
   GOODBYE: '¡Hasta luego!',
   HINT_HOME: 'Di "hola", "ayuda", "comprobar permisos", "usar api" o "salir"',
