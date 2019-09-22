@@ -9,7 +9,7 @@
             "hello",
             "help"
           ],
-          "name": "alexa-skill-clean-code-template",
+          "name": "skill template",
           "description": "Sample Alexa Skill with clean code and APL support"
         },
         "es-ES": {

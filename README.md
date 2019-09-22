@@ -2,10 +2,18 @@
 
 <https://github.com/javichur/alexa-skill-clean-code-template>
 
-Alexa Skill Template with clean code (eslint, sonar), testing (unit tests, e2e), multi-languge and Alexa Presentation Language (APL) support
+Alexa Skill Template with clean code (eslint, sonar), testing (unit tests, e2e), multi-languge and Alexa Presentation Language (APL) support.
 
-Made with ❤️ by Javier Campos (https://javiercampos.es)
+Made with ❤️ by Javier Campos (<https://javiercampos.es>)
 Available on the [AWS Serverless Application Repository].
+
+## Available intents
+
+- [x] Load and save info from/to session (LoadSessionIntent, SaveSessionIntent).
+- [x] Using external APIs (UseApiIntent).
+- [x] Get user info like name, email or phone (CheckPermisionsIntent).
+- [x] APL touch support (ListadoItemSelected).
+- [x] And more...
 
 ## Initial Setup
 
@@ -15,7 +23,7 @@ Available on the [AWS Serverless Application Repository].
 
 3. Install Alexa Skill Kit (ASK) Toolkit for vscode (<https://marketplace.visualstudio.com/items?itemName=ask-toolkit.alexa-skills-kit-toolkit>)
 
-4. You must edit ~/.aws/credentials file to add a valid AWS profile (aws_access_key_id, aws_secret_access_key) with the following policy:
+4. You must edit ~/.aws/credentials file to add a valid AWS profile (aws_access_key_id, aws_secret_access_key) with the following policy. You must create a IAM user with this policy (<https://console.aws.amazon.com/iam/>):
 
 ```json
 {

@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "hola mundo",
+      "invocationName": "el template",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
@@ -16,7 +16,8 @@
         {
           "name": "AMAZON.StopIntent",
           "samples": [
-            "salir"
+            "salir",
+            "stop"
           ]
         },
         {

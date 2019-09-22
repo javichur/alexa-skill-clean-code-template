@@ -1,5 +1,5 @@
 module.exports = {
-  SKILL_NAME: 'Hello World',
+  SKILL_NAME: 'The Template',
   WELCOME_TO: 'Welcome to the',
   HELP: 'You can say "hello", "help", "check permissions", "use api", "load session", "save session" or "bye".',
   HELLO_WORLD: 'Hello World',

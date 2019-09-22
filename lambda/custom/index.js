@@ -112,7 +112,10 @@ const CancelAndStopIntentHandler = {
         || handlerInput.requestEnvelope.request.intent.name === 'AMAZON.StopIntent');
   },
   handle(handlerInput) {
-    return GlobalHandlers.CancelAndStop(handlerInput, t);
+    return handlerInput.responseBuilder
+      .speak(t.GOODBYE)
+      .withShouldEndSession(true) // required to end session with APL support.
+      .getResponse();
   },
 };
 

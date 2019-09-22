@@ -1,13 +1,6 @@
 /* eslint-disable  no-console */
 module.exports = {
 
-  CancelAndStop(handlerInput, t) {
-    return handlerInput.responseBuilder
-      .speak(t.GOODBYE)
-      .withShouldEndSession(true) // required to end session with APL support.
-      .getResponse();
-  },
-
   SessionEndedRequestHandler: {
     canHandle(handlerInput) {
       return handlerInput.requestEnvelope.request.type === 'SessionEndedRequest';
