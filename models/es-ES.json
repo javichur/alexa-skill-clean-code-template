@@ -24,6 +24,28 @@
           "samples": [
             "hola"
           ]
+        },
+        {
+          "name": "UseApiIntent",
+          "samples": [
+            "api",
+            "probar api",
+            "usar api",
+            "conecta con api",
+            "conectar con api",
+            "consumir api",
+            "consume api"
+          ]
+        },
+        {
+          "name": "CheckPermisionsIntent",
+          "samples": [
+            "permisos",
+            "comprobar permisos",
+            "comprueba permisos",
+            "comprueba si tienes los permisos",
+            "permiso"
+          ]
         }
       ]
     }

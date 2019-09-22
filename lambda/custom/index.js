@@ -42,6 +42,17 @@ const HelloWorldIntentHandler = {
   },
 };
 
+const CheckPermissionsIntentHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+      && handlerInput.requestEnvelope.request.intent.name === 'CheckPermisionsIntent';
+  },
+  handle(handlerInput) {
+    const PermissionHandler = require('./handlers/permissionHandler.js');
+    return PermissionHandler.PermissionRequest(handlerInput, t);
+  },
+};
+
 const HelpIntentHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
@@ -105,7 +116,7 @@ const myLocalizationInterceptor = {
         langSkill = langUser;
         return;
       } catch (e) {
-        console.log(`Error reading strings. langUser: ${langUser}`);
+        // console.log(`Error reading strings. langUser: ${langUser}`);
       }
 
       const lang = langUser.split('-')[0];
@@ -114,7 +125,7 @@ const myLocalizationInterceptor = {
         langSkill = lang;
         return;
       } catch (e) {
-        console.log(`Error reading strings. lang: ${lang}`);
+        // console.log(`Error reading strings. lang: ${lang}`);
       }
     }
 
@@ -132,6 +143,7 @@ exports.handler = skillBuilder
     LaunchRequestHandler,
     HelloWorldIntentHandler,
     HelpIntentHandler,
+    CheckPermissionsIntentHandler,
     EventHandler, // taps en pantalla APL
     CancelAndStopIntentHandler,
     GlobalHandlers.SessionEndedRequestHandler,

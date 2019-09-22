@@ -20,6 +20,29 @@
           "samples": [
             "hello"
           ]
+        },
+        {
+          "name": "UseApiIntent",
+          "samples": [
+            "api",
+            "test api",
+            "use api",
+            "connect to api",
+            "api connect",
+            "consume an api",
+            "consume the api",
+            "consume api"
+          ]
+        },
+        {
+          "name": "CheckPermisionsIntent",
+          "samples": [
+            "permissions",
+            "check permissions",
+            "check permissions",
+            "check if you have the permissions",
+            "permission"
+          ]
         }
       ]
     }

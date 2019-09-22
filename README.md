@@ -316,6 +316,23 @@ myDb.getItem(userID).then((data) => {
 25. Deploy using Alias and Lambda versions.
 // TODO
 
+26. Use permissions to get info about the user (name, phone number or email).
+Add the following code in `skill.json` and try `CheckPermisionsIntent` sample.
+
+```json
+"permissions": [
+  {
+    "name": "alexa::profile:given_name:read"
+  },
+  {
+    "name": "alexa::profile:email:read"
+  },
+  {
+    "name": "alexa::profile:mobile_number:read"
+  }
+]
+```
+
 ## Known problems
 
 1. Error invoking `ask deploy`: "No se puede cargar el archivo `\hooks\pre_deploy_hook.ps1` porque la ejecución de scripts está deshabilitada en este sistema". Solution:
