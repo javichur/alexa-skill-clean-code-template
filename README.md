@@ -10,6 +10,7 @@ Available on the [AWS Serverless Application Repository].
 ## Available intents
 
 - [x] Load and save info from/to session (LoadSessionIntent, SaveSessionIntent).
+- [x] Load and save data from/to Dynamodb (LoadDynamoDBIntent, SaveDynamoDBIntent).
 - [x] Using external APIs (UseApiIntent).
 - [x] Get user info like name, email or phone (CheckPermisionsIntent).
 - [x] Using built-in slots (ColorIntent).
@@ -288,32 +289,36 @@ npm run sonar-eslint
 
 19. Use APL events (`headerNavigationAction` and `TouchWrapper.onPress` in `documentListado.json`).
 
-20. Access to DynamoDB
+20. Access to DynamoDB using dynamola library.
 
 ```shell
-npm install dynamola
+npm install dynamola --save
 ```
 
 Use it:
 
 ```javascript
 const Dynamola = require('dynamola');
-let myDb = new Dynamola("nombre-tabla-en-dynamodb", "nombre-primary-key-en-dynamodb", null);
+let myDb = new Dynamola('dynamodb-table-name', 'dynamodb-primary-key-name', null);
 
 myDb.getItem(userID).then((data) => {
   if(!data){
-      // item no existe
+      // item doesn't exist
   }
   else {
-    // item devuelto OK
+    // item returned OK
   }
 })
 .catch((err) => {
-  // error al acceder a dynamodb
+  // error reading dynamodb
 });
 ```
 
-// TODO
+To access the DynamoDB database:
+I. Configure the name of the table and the name of the primary key in the "settings.js" file.
+II. Verify that you have created the database in dynamodb.
+III. You can create a test table using the `dynamodb-create-sample-table.js` script. You will need access permissions to DynamoDB where you run that script.
+IV. Verify that you have assigned the necessary permissions for the lambda function to get read/write access to the dynamodb table. Get more info here: `https://github.com/javichur/dynamola`
 
 21. Work with session. See `/data/sessionState.js`, and following intents: `SaveSessionIntent` and `LoadSessionIntent`.
 

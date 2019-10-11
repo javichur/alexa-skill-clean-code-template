@@ -65,6 +65,28 @@
           ]
         },
         {
+          "name": "SaveDynamoDBIntent",
+          "samples": [
+            "save database",
+            "save to database",
+            "save dynamo",
+            "save in database",
+            "store in dynamo",
+            "save the database",
+            "save in dynamodb"
+          ]
+        },
+        {
+          "name": "LoadDynamoDBIntent",
+          "samples": [
+            "load database",
+            "load from database",
+            "load from dynamo",
+            "load the database",
+            "read database"
+          ]
+        },
+        {
           "name": "ColorIntent",
           "slots": [
             {

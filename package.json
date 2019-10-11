@@ -3,6 +3,7 @@
     "test": "echo \"Please use vscode and press F5 to start Unit Tests and debug them\" && exit 1",
     "eslint": "eslint ./lambda/custom",
     "eslint:json": "eslint -f json -o eslint-report.json ./lambda/custom",
+    "create-table": "node ./dynamodb-create-sample-table.js",
     "sonar": "sonar-scanner",
     "sonar-eslint": "npm run eslint:json || npm run sonar",
     "unit-test": "node ./node_modules/bespoken-tools/bin/bst-test.js ./test/unit/*",

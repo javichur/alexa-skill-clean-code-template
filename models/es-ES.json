@@ -70,6 +70,29 @@
           ]
         },
         {
+          "name": "SaveDynamoDBIntent",
+          "samples": [
+            "guardar base de datos",
+            "guardar en base de datos",
+            "guardar dynamo",
+            "guardar dinamo db",
+            "guardar dynamodb",
+            "guardar la base de datos"
+          ]
+        },
+        {
+          "name": "LoadDynamoDBIntent",
+          "samples": [
+            "cargar base de datos",
+            "cargar de base de datos",
+            "leer de base de datos",
+            "leer base de datos",
+            "lee dynamodb",
+            "leer dinamo",
+            "leer dinamo db"
+          ]
+        },
+        {
           "name": "ColorIntent",
           "slots": [
             {

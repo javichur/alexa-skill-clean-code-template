@@ -88,6 +88,51 @@ const LoadSessionIntentHandler = {
   },
 };
 
+const SaveDynamoDBIntentHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+      && handlerInput.requestEnvelope.request.intent.name === 'SaveDynamoDBIntent';
+  },
+  async handle(handlerInput) {
+    const dataHelper = require('./data/dataHelper.js');
+    const { userId } = handlerInput.requestEnvelope.context.System.user;
+
+    const attributes = {
+      name: 'Bob',
+      country: 'Spain',
+      city: 'Valencia',
+    };
+
+    const speechText = await dataHelper.saveToDynamoDB(userId, attributes);
+
+    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
+      t.HINT_HOME, speechText);
+  },
+};
+
+const LoadDynamoDBIntentHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+      && handlerInput.requestEnvelope.request.intent.name === 'LoadDynamoDBIntent';
+  },
+  async handle(handlerInput) {
+    const dataHelper = require('./data/dataHelper.js');
+    const { userId } = handlerInput.requestEnvelope.context.System.user;
+
+    const ret = await dataHelper.loadFromDynamoDB(userId);
+
+    let speechText = '';
+    if (!ret) {
+      speechText = 'Error reading from database.';
+    } else {
+      speechText = ret.name;
+    }
+
+    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
+      t.HINT_HOME, speechText);
+  },
+};
+
 const ColorIntentHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
@@ -199,6 +244,8 @@ exports.handler = skillBuilder
     CheckPermissionsIntentHandler,
     SaveSessionIntentHandler,
     LoadSessionIntentHandler,
+    SaveDynamoDBIntentHandler,
+    LoadDynamoDBIntentHandler,
     ColorIntentHandler,
     EventHandler, // taps en pantalla APL
     CancelAndStopIntentHandler,
