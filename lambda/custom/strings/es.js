@@ -11,4 +11,25 @@ module.exports = {
   SESSION_LOADED: 'Acabo de leer el valor {0} de la sesión de la skill.',
   SESSION_SAVED: 'Acabo de guardar el valor {0} en la sesión de la skill. Di "leer sesión".',
   COLOR_SAID: 'Has dicho el color {0}',
+
+  /* purchase strings */
+  I_RECOMMEND_THIS: 'Te recomiendo esto',
+  DO_YOU_WANT_TO_LEARN_MORE: '¿Quieres saber más?',
+  NO_PRODUCTS_TO_OFFER: 'No hay productos que te pueda ofrecer ahora. Lo siento',
+  I_DIDNT_CATCH: 'No entendí eso. ¿Con qué te puedo ayudar?',
+  PRODUCTS_AVAILABLE_TO_PURCHASE_ARE: `Los productos disponibles para comprar en este momento son {0}. 
+    Para saber más sobre un producto, di 'cuéntame más sobre' seguido del nombre del producto. 
+    Si tú estás listo para comprar, dime 'Comprar' seguido del nombre del producto. ¿Qué me dices?`,
+  YOU_HAVE_ALREADY_BOUGHT_THE: '¡Buenas noticias! Ya has comprado',
+  ENJOY_YOUR_X_PURCHASE: 'Disfruta la compra de {0}. ',
+  SOMETHING_UNEXPECTED_BUYING: 'Algo inesperado pasó, pero gracias por tu interés en {0}.',
+  ERROR_HANDLING_REQUEST: 'Hubo un error atendiendo tu petición. Por favor inténtalo de nuevo o contacta con nosotros para recibir ayuda.',
+  BOUGHT_LIST: 'Ya has comprado los siguientes items:',
+  HOW_CAN_I_HELP: '¿Cómo puedo ayudarte?',
+  ASK_WHAT_CAN_I_BUY_OR_HELP: 'Di "¿Qué puedo comprar?". También puedes decir "ayuda". ¿Cómo puedo ayudarte?',
+  YOU_HAVE_NOT_PURCHASED_ANYTHING: 'Tú no has comprado nada aún. Para saber más sobre los productos que puedes comprar, di "¿Qué puedo comprar?". También puedes decir "ayuda". ¿Qué dices?',
+  IF_YOU_ARE_READY_TO_BUY_X_SAY: 'Si estás listo para comprar, di "Comprar {0}". ¿Qué dices?',
+  SURE: 'Claro',
+  TRY_ORDER_HISTORY: 'Di "histórico de compras" o "ayuda".',
+  TRY_BUY_AND_PRODUCT_NAME: 'Di "Comprar" seguido del nombre del producto',
 };

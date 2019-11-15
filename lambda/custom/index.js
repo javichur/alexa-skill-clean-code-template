@@ -1,29 +1,46 @@
 /* eslint-disable  no-console */
 /* eslint-disable global-require */
-
 const Alexa = require('ask-sdk-core');
-
 const Settings = require('./settings.js');
 const AplTemplates = require('./apl/aplTemplates.js');
 const SessionState = require('./data/sessionState.js');
+const GlobalHandlers = require('./handlers/globalHandlers.js'); // ErrorHandler, SessionEnded...
 
-// GlobalHandlers: ErrorHandler, SessionEndedRequestHandler...
-const GlobalHandlers = require('./handlers/globalHandlers.js');
+const LOC = { // Se inicializa en myLocalizationInterceptor()
+  t: null, // cadenas de texto localizadas.
+  langSkill: null, // current language ('es-ES', 'en-US', 'en', 'es'...)
+};
 
-let t = null; // strings. Initialized by myLocalizationInterceptor()
-let langSkill = null; // current language ('es-ES', 'en-US', 'en', etc...)
+function initializeSkill(handlerInput) {
+  SessionState.setCurrentState(handlerInput, SessionState.STATES.LAUNCH);
+}
+
+/* in-skill purchases */
+const PurchaseHandlers = require('./handlers/purchaseHandlers.js');
+
+const initPurchaseHandlers = {
+  process(handlerInput) {
+    PurchaseHandlers.methodPostPurchase = initializeSkill; // reload session after purchase, etc.
+    PurchaseHandlers.methodPostRefund = initializeSkill; // reload session after refund, etc.
+    PurchaseHandlers.LOC = LOC; // strings
+    PurchaseHandlers.speakPostPurchase = LOC.t.SPEAK_POST_PURCHASE;
+    PurchaseHandlers.speakPostRefund = LOC.t.SPEAK_POST_REFUND;
+  },
+};
+/* end in-skill purchases */
+
 
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
   async handle(handlerInput) {
-    SessionState.setCurrentState(handlerInput, SessionState.STATES.LAUNCH);
+    initializeSkill();
 
-    const speechText = `${t.WELCOME_TO} ${t.SKILL_NAME}. ${t.HELP}`;
+    const speechText = `${LOC.t.WELCOME_TO} ${LOC.t.SKILL_NAME}. ${LOC.t.HELP}`;
 
-    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
-      t.HINT_HOME, speechText);
+    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, LOC.t.SKILL_NAME, speechText,
+      LOC.t.HINT_HOME, speechText);
   },
 };
 
@@ -35,12 +52,39 @@ const HelloWorldIntentHandler = {
   handle(handlerInput) {
     SessionState.setCurrentState(handlerInput, SessionState.STATES.HELLO_WORLD);
 
-    const speechText = t.HELLO_WORLD;
+    const speechText = LOC.t.HELLO_WORLD;
 
-    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
-      t.HINT_HOME, speechText);
+    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, LOC.t.SKILL_NAME, speechText,
+      LOC.t.HINT_HOME, speechText);
   },
 };
+
+/* Ejemplo de intent handler que sugiere la compra del in-skill purchase si no se
+ha comprado ya antes.
+const HelloWorldIntentHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+      && handlerInput.requestEnvelope.request.intent.name === 'HelloWorldIntent';
+  },
+  handle(handlerInput) {
+    SessionState.setCurrentState(handlerInput, SessionState.STATES.HELLO_WORLD);
+
+    // si no ha comprado la in-skill purchase... sugerir su compra cada X tiempo
+    const random = 10;
+    if (random >= Settings.NUM_FREE_ITEMS) {
+      const isEntitled = await PurchaseHandlers.isEntitledByProductId(handlerInput,
+        Settings.ID_PRODUCT_ISP);
+      if (isEntitled === false) {
+        return PurchaseHandlers.makeUpsellByProductId(handlerInput, Settings.ID_PRODUCT_ISP);
+      }
+    }
+
+    const speechText = LOC.t.HELLO_WORLD;
+    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, LOC.t.SKILL_NAME, speechText,
+      LOC.t.HINT_HOME, speechText);
+  },
+};
+*/
 
 const CheckPermissionsIntentHandler = {
   canHandle(handlerInput) {
@@ -49,7 +93,7 @@ const CheckPermissionsIntentHandler = {
   },
   handle(handlerInput) {
     const PermissionHandler = require('./handlers/permissionHandler.js');
-    return PermissionHandler.PermissionRequest(handlerInput, t);
+    return PermissionHandler.PermissionRequest(handlerInput, LOC.t);
   },
 };
 
@@ -62,10 +106,10 @@ const SaveSessionIntentHandler = {
     let speechText = '';
     const valor = Math.floor((Math.random() * 10) + 1);
     SessionState.setTestAttribute(handlerInput, valor);
-    speechText = t.SESSION_SAVED.replace('{0}', valor);
+    speechText = LOC.t.SESSION_SAVED.replace('{0}', valor);
 
-    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
-      t.HINT_HOME, speechText);
+    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, LOC.t.SKILL_NAME, speechText,
+      LOC.t.HINT_HOME, speechText);
   },
 };
 
@@ -78,13 +122,13 @@ const LoadSessionIntentHandler = {
     let speechText = '';
     const valor = SessionState.getTestAttribute(handlerInput);
     if (!valor) {
-      speechText = t.SESSION_NOT_SAVED_YET;
+      speechText = LOC.t.SESSION_NOT_SAVED_YET;
     } else {
-      speechText = t.SESSION_LOADED.replace('{0}', valor);
+      speechText = LOC.t.SESSION_LOADED.replace('{0}', valor);
     }
 
-    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
-      t.HINT_HOME, speechText);
+    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, LOC.t.SKILL_NAME, speechText,
+      LOC.t.HINT_HOME, speechText);
   },
 };
 
@@ -97,16 +141,11 @@ const SaveDynamoDBIntentHandler = {
     const dataHelper = require('./data/dataHelper.js');
     const { userId } = handlerInput.requestEnvelope.context.System.user;
 
-    const attributes = {
-      name: 'Bob',
-      country: 'Spain',
-      city: 'Valencia',
-    };
-
+    const attributes = { name: 'Bob', country: 'Spain', city: 'Valencia' };
     const speechText = await dataHelper.saveToDynamoDB(userId, attributes);
 
-    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
-      t.HINT_HOME, speechText);
+    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, LOC.t.SKILL_NAME, speechText,
+      LOC.t.HINT_HOME, speechText);
   },
 };
 
@@ -128,8 +167,8 @@ const LoadDynamoDBIntentHandler = {
       speechText = ret.name;
     }
 
-    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
-      t.HINT_HOME, speechText);
+    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, LOC.t.SKILL_NAME, speechText,
+      LOC.t.HINT_HOME, speechText);
   },
 };
 
@@ -140,13 +179,12 @@ const ColorIntentHandler = {
   },
   handle(handlerInput) {
     const color = handlerInput.requestEnvelope.request.intent.slots.colorSlot.value;
-    const speechText = t.COLOR_SAID.replace('{0}', color);
+    const speechText = LOC.t.COLOR_SAID.replace('{0}', color);
 
-    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, t.SKILL_NAME, speechText,
-      t.HINT_HOME, speechText);
+    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, LOC.t.SKILL_NAME, speechText,
+      LOC.t.HINT_HOME, speechText);
   },
 };
-
 
 const HelpIntentHandler = {
   canHandle(handlerInput) {
@@ -156,12 +194,11 @@ const HelpIntentHandler = {
   handle(handlerInput) {
     SessionState.setCurrentState(handlerInput, SessionState.STATES.HELP);
 
-    const speechText = t.HELP;
-
+    const speechText = LOC.t.HELP;
     const MockList = require('./data/mocks/mockList.js');
 
-    return AplTemplates.getAplListOrVoice(handlerInput, t.SKILL_NAME, MockList.list,
-      t.HINT_HOME, speechText);
+    return AplTemplates.getAplListOrVoice(handlerInput, LOC.t.SKILL_NAME, MockList.list,
+      LOC.t.HINT_HOME, speechText);
   },
 };
 
@@ -173,7 +210,7 @@ const CancelAndStopIntentHandler = {
   },
   handle(handlerInput) {
     return handlerInput.responseBuilder
-      .speak(t.GOODBYE)
+      .speak(LOC.t.GOODBYE)
       .withShouldEndSession(true) // required to end session with APL support.
       .getResponse();
   },
@@ -185,7 +222,7 @@ const EventHandler = {
   },
   handle(handlerInput) {
     const AplUserEventHandler = require('./handlers/aplUserEventHandler.js');
-    return AplUserEventHandler.AplUserEvent(handlerInput, t);
+    return AplUserEventHandler.AplUserEvent(handlerInput, LOC.t);
   },
 };
 
@@ -199,19 +236,19 @@ const UseApiRequestHandler = {
   },
   async handle(handlerInput) {
     const ApiHandlers = require('./handlers/apiHandlers.js');
-    return ApiHandlers.UseApiRequest(handlerInput, t);
+    return ApiHandlers.UseApiRequest(handlerInput, LOC.t);
   },
 };
 
-// Initialize 't' and 'langSkill' with user language or default language.
+// Initialize 'LOC' with user language or default language.
 const myLocalizationInterceptor = {
   process(handlerInput) {
     const langUser = handlerInput.requestEnvelope.request.locale;
 
     if (langUser) {
       try {
-        t = require(`./strings/${langUser}.js`); // eslint-disable-line import/no-dynamic-require
-        langSkill = langUser;
+        LOC.t = require(`./strings/${langUser}.js`); // eslint-disable-line import/no-dynamic-require
+        LOC.langSkill = langUser;
         return;
       } catch (e) {
         // console.log(`Error reading strings. langUser: ${langUser}`);
@@ -219,8 +256,8 @@ const myLocalizationInterceptor = {
 
       const lang = langUser.split('-')[0];
       try {
-        t = require(`./strings/${lang}.js`); // eslint-disable-line import/no-dynamic-require
-        langSkill = lang;
+        LOC.t = require(`./strings/${lang}.js`); // eslint-disable-line import/no-dynamic-require
+        LOC.langSkill = lang;
         return;
       } catch (e) {
         // console.log(`Error reading strings. lang: ${lang}`);
@@ -228,14 +265,13 @@ const myLocalizationInterceptor = {
     }
 
     // default lang
-    langSkill = Settings.DEFAULT_LANGUAGE;
-    t = require(`./strings/${langSkill}.js`); // eslint-disable-line import/no-dynamic-require
+    LOC.langSkill = Settings.DEFAULT_LANGUAGE;
+    LOC.t = require(`./strings/${LOC.langSkill}.js`); // eslint-disable-line import/no-dynamic-require
   },
 };
 
 
 const skillBuilder = Alexa.SkillBuilders.custom();
-
 exports.handler = skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
@@ -251,9 +287,18 @@ exports.handler = skillBuilder
     CancelAndStopIntentHandler,
     GlobalHandlers.SessionEndedRequestHandler,
     UseApiRequestHandler, // API sample
+
+    PurchaseHandlers.WhatCanIBuyIntentHandler, // purchase handlers
+    PurchaseHandlers.TellMeMoreAboutProductIntentHandler,
+    PurchaseHandlers.BuyIntentHandler,
+    PurchaseHandlers.BuyResponseHandler,
+    PurchaseHandlers.PurchaseHistoryIntentHandler,
+    PurchaseHandlers.RefundProductIntentHandler,
+    PurchaseHandlers.CancelProductResponseHandler,
+
     GlobalHandlers.IntentReflectorHandler, // last
   )
-  .addRequestInterceptors(myLocalizationInterceptor)
+  .addRequestInterceptors(myLocalizationInterceptor, initPurchaseHandlers) // lang & purchase
   .addErrorHandlers(GlobalHandlers.ErrorHandler)
-  .withApiClient(new Alexa.DefaultApiClient()) // API to get user permissions
+  .withApiClient(new Alexa.DefaultApiClient()) // API to get user permissions and in-skill purchases
   .lambda();

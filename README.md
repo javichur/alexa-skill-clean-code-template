@@ -2,7 +2,7 @@
 
 <https://github.com/javichur/alexa-skill-clean-code-template>
 
-Alexa Skill Template with clean code (eslint, sonar), testing (unit tests, e2e), multi-languge and Alexa Presentation Language (APL) support.
+Alexa Skill Template with clean code (eslint, sonar), testing (unit tests, e2e), multi-language, Alexa Presentation Language (APL) and In-Skill Purchases support.
 
 Made with ❤️ by Javier Campos (<https://javiercampos.es>)
 Available on the [AWS Serverless Application Repository].
@@ -15,6 +15,7 @@ Available on the [AWS Serverless Application Repository].
 - [x] Get user info like name, email or phone (CheckPermisionsIntent).
 - [x] Using built-in slots (ColorIntent).
 - [x] APL touch support (ListadoItemSelected).
+- [x] In-Skill Purchases: Subscriptions and One-Time purchases (WhatCanIBuyIntent, TellMeMoreAboutProductIntent, BuyIntent, PurchaseHistoryIntent, RefundProductIntent; BuyResponseHandler and CancelProductResponseHandler).
 - [x] And more...
 
 ## Initial Setup
@@ -347,6 +348,8 @@ Add the following code in `skill.json` and try `CheckPermisionsIntent` sample.
   }
 ]
 ```
+
+27. In-Skill Purchases added. Check `\handlers\purchaseHandlers.js`, `index.js` and voice models. New intents have been included: WhatCanIBuyIntent, TellMeMoreAboutProductIntent, BuyIntent, PurchaseHistoryIntent, RefundProductIntent; BuyResponseHandler and CancelProductResponseHandler.
 
 ## Known problems
 

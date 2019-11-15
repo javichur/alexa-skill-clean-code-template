@@ -11,4 +11,28 @@ module.exports = {
   SESSION_LOADED: 'I just read the value {0} from the skill session.',
   SESSION_SAVED: 'I just saved the {0} value to the skill session. Say "load session".',
   COLOR_SAID: 'You just said the color {0}',
+
+  SPEAK_POST_PURCHASE: 'Try "help" for more info', // edit this
+  SPEAK_POST_REFUND: 'Try "help" for more info', // edit this
+
+  /* purchase strings */
+  I_RECOMMEND_THIS: 'I recommend this for you',
+  DO_YOU_WANT_TO_LEARN_MORE: 'Do you want to learn more?',
+  NO_PRODUCTS_TO_OFFER: 'There are no products to offer to you right now. Sorry about that',
+  I_DIDNT_CATCH: 'I didn\'t catch that. What can I help you with?',
+  PRODUCTS_AVAILABLE_TO_PURCHASE_ARE: `Products available for purchase at this time are {0}. 
+    To learn more about a product, say 'Tell me more about' followed by the product name. 
+    If you are ready to buy, say, 'Buy' followed by the product name. So what can I help you with?`,
+  YOU_HAVE_ALREADY_BOUGHT_THE: 'Good News! You\'ve already bought the',
+  ENJOY_YOUR_X_PURCHASE: 'Enjoy your {0} purchase. ',
+  SOMETHING_UNEXPECTED_BUYING: 'Something unexpected happened, but thanks for your interest in the {0}.',
+  ERROR_HANDLING_REQUEST: 'There was an error handling your request. Please try again or contact us for help.',
+  BOUGHT_LIST: 'You have bought the following items:',
+  HOW_CAN_I_HELP: 'How can I help?',
+  ASK_WHAT_CAN_I_BUY_OR_HELP: 'Say "what can I buy"? Also you can say "Help". How can I help?',
+  YOU_HAVE_NOT_PURCHASED_ANYTHING: 'You haven\'t purchased anything yet. To learn more about the products you can buy, Say "what can I buy"? Also you can say "Help". How can I help?',
+  IF_YOU_ARE_READY_TO_BUY_X_SAY: 'If you are ready to buy, say "Buy {0}". So what can I help you with?',
+  SURE: 'Sure',
+  TRY_ORDER_HISTORY: 'Try "Order history" or "Help".',
+  TRY_BUY_AND_PRODUCT_NAME: 'Try "Buy" followed by the product name',
 };

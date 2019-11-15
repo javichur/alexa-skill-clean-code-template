@@ -1,6 +1,6 @@
 {
   "name": "alexa-skill-clean-code-template",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,6 +12,6 @@
   "dependencies": {
     "ask-sdk-core": "^2.0.0",
     "ask-sdk-model": "^1.0.0",
-    "dynamola": "^1.4.1"
+    "dynamola": "^1.4.5"
   }
 }
