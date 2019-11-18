@@ -355,7 +355,7 @@ const p = {
           // We use status code to put speech at the end of Alexa's cancellation response.
           // Currently, we have the same additional speech (getRandomYesNoQuestion)for accepted,
           // canceled, and not_entitled. You may edit these below, if you like.
-          switch (handlerInput.requestEnvelope.request.payload) {
+          switch (handlerInput.requestEnvelope.request.payload.purchaseResult) {
             case 'ACCEPTED':
               // Cancellation confirmation response is handled by Alexa's Purchase Experience Flow.
               // Simply add to that with getRandomYesNoQuestion()
@@ -371,6 +371,7 @@ const p = {
               speechText = `${p.speakPostRefund}`;
               break;
             default:
+              speechText = `${p.speakPostRefund}`;
               break;
           }
 
