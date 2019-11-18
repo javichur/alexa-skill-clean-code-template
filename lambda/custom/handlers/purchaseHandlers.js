@@ -29,6 +29,20 @@ const p = {
     return ret;
   },
 
+  isPurchasable(product) {
+    return this.isProduct(product) && product[0].purchasable === 'PURCHASABLE';
+  },
+
+  async isPurchasableByProductId(handlerInput, productid) {
+    const { locale } = handlerInput.requestEnvelope.request;
+    const monetizationClient = handlerInput.serviceClientFactory.getMonetizationServiceClient();
+    const res = await monetizationClient.getInSkillProducts(locale);
+    const oneProduct = res.inSkillProducts.filter(record => record.referenceName === productid);
+    const ret = this.isPurchasable(oneProduct);
+    console.log(`ret isPurchasableByProductId: ${ret}`);
+    return ret;
+  },
+
   getAllEntitledProducts(inSkillProductList) {
     const entitledProductList = inSkillProductList.filter(record => record.entitled === 'ENTITLED');
     return entitledProductList;
@@ -333,8 +347,6 @@ const p = {
         );
 
         console.log(`PRODUCT = ${JSON.stringify(product)}`);
-        console.log('code ==> ' + handlerInput.requestEnvelope.request.status.code);
-        console.log('payload ===> ' + handlerInput.requestEnvelope.request.payload);
 
         if (handlerInput.requestEnvelope.request.status.code === '200') {
           // Alexa handles the speech response immediately following the cancellation request.

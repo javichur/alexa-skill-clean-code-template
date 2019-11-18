@@ -60,7 +60,7 @@ const HelloWorldIntentHandler = {
 };
 
 /* Ejemplo de intent handler que sugiere la compra del in-skill purchase si no se
-ha comprado ya antes.
+ha comprado ya antes y además el usuario puede comprarlo (purchasable)
 const HelloWorldIntentHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
@@ -74,8 +74,12 @@ const HelloWorldIntentHandler = {
     if (random >= Settings.NUM_FREE_ITEMS) {
       const isEntitled = await PurchaseHandlers.isEntitledByProductId(handlerInput,
         Settings.ID_PRODUCT_ISP);
-      if (isEntitled === false) {
-        return PurchaseHandlers.makeUpsellByProductId(handlerInput, Settings.ID_PRODUCT_ISP);
+      if (!isEntitled) {
+        const isPurchasable = await PurchaseHandlers.isPurchasableByProductId(handlerInput,
+          Settings.ID_PRODUCT_ISP);
+        if (isPurchasable) {
+          return PurchaseHandlers.makeUpsellByProductId(handlerInput, Settings.ID_PRODUCT_ISP);
+        }
       }
     }
 
