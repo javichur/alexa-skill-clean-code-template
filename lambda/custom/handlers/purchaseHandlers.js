@@ -306,6 +306,12 @@ const p = {
           record => record.referenceName === idProduct,
         );
 
+        if (!p.isProduct(oneProduct)) { // si no se encuentra el producto...
+          const speechText = p.LOC.t.I_DIDNT_CATCH;
+          return AplTemplates.getAplTextAndHintOrVoice(handlerInput, p.LOC.t.SKILL_NAME,
+            speechText, p.LOC.t.ASK_WHAT_CAN_I_BUY_OR_HELP, speechText, false);
+        }
+
         return handlerInput.responseBuilder
           .addDirective({
             type: 'Connections.SendRequest',
