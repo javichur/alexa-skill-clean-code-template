@@ -105,8 +105,145 @@
             "color {colorSlot}",
             "elijo el color {colorSlot}"
           ]
+        },
+        {
+          "name": "WhatCanIBuyIntent",
+          "slots": [],
+          "samples": [
+            "comprar",
+            "compra",
+            "adquirir",
+            "dime qué puedo comprar",
+            "qué puedo comprar",
+            "cuéntame qué puedo comprar",
+            "ampliar",
+            "qué puedo adquirir"
+          ]
+        },
+        {
+          "name": "TellMeMoreAboutProductIntent",
+          "slots": [
+            {
+              "name": "ProductName",
+              "type": "LIST_OF_PRODUCT_NAMES"
+            }
+          ],
+          "samples": [
+            "dime más sobre {ProductName}",
+            "cuéntame más sobre {ProductName}",
+            "qué es {ProductName}"
+          ]
+        },
+        {
+          "name": "BuyIntent",
+          "slots": [
+            {
+              "name": "ProductName",
+              "type": "LIST_OF_PRODUCT_NAMES",
+              "samples": [
+                "{ProductName}"
+              ]
+            }
+          ],
+          "samples": [
+            "quiero {ProductName}",
+            "quería {ProductName}",
+            "compra {ProductName}",
+            "comprar {ProductName}",
+            "adquirir {ProductName}",
+            "pillar {ProductName}",
+            "coger {ProductName}"
+          ]
+        },
+        {
+          "name": "RefundProductIntent",
+          "slots": [
+            {
+              "name": "ProductName",
+              "type": "LIST_OF_PRODUCT_NAMES"
+            }
+          ],
+          "samples": [
+            "devolver {ProductName}",
+            "retornar {ProductName}",
+            "cancelar {ProductName}",
+            "devuelve {ProductName}",
+            "cancela {ProductName}",
+            "borra {ProductName}"
+          ]
+        },
+        {
+          "name": "PurchaseHistoryIntent",
+          "slots": [],
+          "samples": [
+            "histórico de compras",
+            "qué he comprado",
+            "qué compré",
+            "mis pedidos",
+            "ver mis compras",
+            "mis compras realizadas"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "name": "LIST_OF_PRODUCT_NAMES",
+          "values": [
+            {
+              "id": "nameproductpurchase",
+              "name": {
+                "value": "productos ilimitados",
+                "synonyms": [
+                  "suscripción",
+                  "Número ilimitado de productos",
+                  "suscripción premium",
+                  "suscripción ilimitada",
+                  "extra items",
+                  "extra productos",
+                  "más productos",
+                  "más items",
+                  "Pack de más productos",
+                  "Paquete de más productos",
+                  "productos sin límite"
+                ]
+              }
+            }
+          ]
         }
       ]
-    }
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "BuyIntent",
+          "delegationStrategy": "ALWAYS",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "ProductName",
+              "type": "LIST_OF_PRODUCT_NAMES",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1414268579609.664443025499"
+              }
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.1414268579609.664443025499",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Por favor dime el nombre del producto que quieres comprar. Por ejemplo, di 'productos ilimitados'"
+          }
+        ]
+      }
+    ]
   }
 }

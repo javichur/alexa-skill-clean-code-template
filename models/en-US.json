@@ -99,8 +99,130 @@
             "color {colorSlot}",
             "I choose the color {colorSlot}"
           ]
+        },
+        {
+          "name": "WhatCanIBuyIntent",
+          "slots": [],
+          "samples": [
+            "purchase",
+            "shop",
+            "buy",
+            "tell me what I can buy",
+            "what can I shop for",
+            "what can I buy"
+          ]
+        },
+        {
+          "name": "TellMeMoreAboutProductIntent",
+          "slots": [
+            {
+              "name": "ProductName",
+              "type": "LIST_OF_PRODUCT_NAMES"
+            }
+          ],
+          "samples": [
+            "tell me more about {ProductName}",
+            "what is {ProductName}"
+          ]
+        },
+        {
+          "name": "BuyIntent",
+          "slots": [
+            {
+              "name": "ProductName",
+              "type": "LIST_OF_PRODUCT_NAMES",
+              "samples": [
+                "{ProductName}"
+              ]
+            }
+          ],
+          "samples": [
+            "would like {ProductName}",
+            "want {ProductName}",
+            "purchase {ProductName}",
+            "buy {ProductName}"
+          ]
+        },
+        {
+          "name": "RefundProductIntent",
+          "slots": [
+            {
+              "name": "ProductName",
+              "type": "LIST_OF_PRODUCT_NAMES"
+            }
+          ],
+          "samples": [
+            "return {ProductName}",
+            "refund {ProductName}",
+            "cancel {ProductName}"
+          ]
+        },
+        {
+          "name": "PurchaseHistoryIntent",
+          "slots": [],
+          "samples": [
+            "order history",
+            "what have I purchased",
+            "what have I bought"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "name": "LIST_OF_PRODUCT_NAMES",
+          "values": [
+            {
+              "id": "nameproductpurchase",
+              "name": {
+                "value": "unlimited products",
+                "synonyms": [
+                  "subscription",
+                  "premium subscription",
+                  "unlimited subscription",
+                  "extra items",
+                  "extra products",
+                  "more products",
+                  "more items",
+                  "Pack of extra products"
+                ]
+              }
+            }
+          ]
         }
       ]
-    }
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "BuyIntent",
+          "delegationStrategy": "ALWAYS",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "ProductName",
+              "type": "LIST_OF_PRODUCT_NAMES",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1414268579609.664443025499"
+              }
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.1414268579609.664443025499",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Please say the name of the product you want to buy. For example, say 'unlimited products'"
+          }
+        ]
+      }
+    ]
   }
 }
