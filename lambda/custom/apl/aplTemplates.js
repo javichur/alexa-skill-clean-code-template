@@ -7,9 +7,10 @@ module.exports = {
    * @param {string} text
    * @param {string} hint
    * @param {string} speechText
+   * @param {string} img Url de la imagen de fondo. Puede ser null.
    * @param {bool} isStop indica si hay que cerrar sesión después (true) o no (false)
    */
-  getAplTextAndHintOrVoiceOptionalStop(handlerInput, title, text, hint, speechText, isStop) {
+  getAplTextAndHintOrVoiceOptionalStop(handlerInput, title, text, hint, speechText, img, isStop) {
     const ret = handlerInput.responseBuilder
       .speak(speechText);
 
@@ -21,6 +22,11 @@ module.exports = {
       d.data.title = title;
       d.data.text = text;
       d.data.hintText = hint;
+
+      if (img !== null) {
+        d.data.backgroundImageSmall = img;
+        d.data.backgroundImage = img;
+      }
 
       ret.addDirective({
         type: 'Alexa.Presentation.APL.RenderDocument',
@@ -53,7 +59,12 @@ module.exports = {
    */
   getAplTextAndHintOrVoice(handlerInput, title, text, hint, speechText) {
     return this.getAplTextAndHintOrVoiceOptionalStop(handlerInput, title, text,
-      hint, speechText, false);
+      hint, speechText, null, false);
+  },
+
+  getAplTextAndHintAndBackgroundOrVoice(handlerInput, title, text, hint, img, speechText) {
+    return this.getAplTextAndHintOrVoiceOptionalStop(handlerInput, title, text,
+      hint, speechText, img, false);
   },
 
   getAplListOrVoice(handlerInput, title, list, hint, speechText) {

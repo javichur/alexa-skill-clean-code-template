@@ -185,21 +185,30 @@
           {
             "type": "AlexaHeader",
             "headerTitle": "${payload.data.title}",
-            "headerAttributionImage": "${payload.data.logoUrl}"
-          },
-          {
-            "type": "Text",
-            "text": "${payload.data.text}",
-            "style": "textStylePrimary",
-            "width": "85vw",
-            "paddingLeft": "15vw",
-            "textAlign": "center"
+            "headerAttributionImage": "${payload.data.logoUrl}",
+            "height": "15vh"
           },
           {
             "type": "AlexaFooter",
             "footerHint": "${payload.data.hintText}",
             "position": "absolute",
-            "bottom": "0vh"
+            "bottom": "0vh",
+            "height": "15vh"
+          },
+          {
+            "type": "ScrollView",
+            "width": "100vw",
+            "height": "70vh",
+            "item": [
+              {
+                "type": "Text",
+                "text": "${payload.data.text}",
+                "style": "textStylePrimary",
+                "width": "85vw",
+                "paddingLeft": "15vw",
+                "textAlign": "center"
+              }
+            ]
           }
         ]
       }
