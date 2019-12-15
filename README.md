@@ -16,6 +16,7 @@ Available on the [AWS Serverless Application Repository].
 - [x] Using built-in slots (ColorIntent).
 - [x] APL touch support (ListadoItemSelected).
 - [x] In-Skill Purchases: Subscriptions and One-Time purchases (WhatCanIBuyIntent, TellMeMoreAboutProductIntent, BuyIntent, PurchaseHistoryIntent, RefundProductIntent; BuyResponseHandler and CancelProductResponseHandler).
+- [x] FallbackIntent to respond gracefully to unexpected customer requests (AMAZON.FallbackIntent).
 - [x] And more...
 
 ## Initial Setup

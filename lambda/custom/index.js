@@ -206,6 +206,22 @@ const HelpIntentHandler = {
   },
 };
 
+const FallbackIntentHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+      && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.FallbackIntent';
+  },
+  handle(handlerInput) {
+    let speakOutput = LOC.t.FALLBACK;
+    speakOutput += LOC.t.HELP;
+
+    return handlerInput.responseBuilder
+      .speak(speakOutput)
+      .reprompt(speakOutput)
+      .getResponse();
+  },
+};
+
 const CancelAndStopIntentHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
@@ -289,6 +305,7 @@ exports.handler = skillBuilder
     ColorIntentHandler,
     EventHandler, // taps en pantalla APL
     CancelAndStopIntentHandler,
+    FallbackIntentHandler, // to Respond Gracefully to Unexpected Customer Requests
     GlobalHandlers.SessionEndedRequestHandler,
     UseApiRequestHandler, // API sample
 

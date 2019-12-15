@@ -11,6 +11,7 @@ module.exports = {
   SESSION_LOADED: 'I just read the value {0} from the skill session.',
   SESSION_SAVED: 'I just saved the {0} value to the skill session. Say "load session".',
   COLOR_SAID: 'You just said the color {0}',
+  FALLBACK: 'I don\'t understand what you mean in this context. ',
 
   SPEAK_POST_PURCHASE: 'Try "help" for more info', // edit this
   SPEAK_POST_REFUND: 'Try "help" for more info', // edit this

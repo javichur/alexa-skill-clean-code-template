@@ -11,6 +11,7 @@ module.exports = {
   SESSION_LOADED: 'Acabo de leer el valor {0} de la sesión de la skill.',
   SESSION_SAVED: 'Acabo de guardar el valor {0} en la sesión de la skill. Di "leer sesión".',
   COLOR_SAID: 'Has dicho el color {0}',
+  FALLBACK: 'No entiendo lo que quieres decir en este contexto. ',
 
   /* purchase strings */
   I_RECOMMEND_THIS: 'Te recomiendo esto',

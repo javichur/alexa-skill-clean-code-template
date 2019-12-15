@@ -165,6 +165,10 @@
             "what have I purchased",
             "what have I bought"
           ]
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
         }
       ],
       "types": [
