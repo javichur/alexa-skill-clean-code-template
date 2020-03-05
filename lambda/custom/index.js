@@ -35,7 +35,7 @@ const LaunchRequestHandler = {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
   async handle(handlerInput) {
-    initializeSkill();
+    initializeSkill(handlerInput);
 
     const speechText = `${LOC.t.WELCOME_TO} ${LOC.t.SKILL_NAME}. ${LOC.t.HELP}`;
 

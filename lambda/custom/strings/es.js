@@ -1,7 +1,7 @@
 module.exports = {
   SKILL_NAME: 'El Template',
   WELCOME_TO: 'Bienvenido a',
-  HELP: 'Puedes decirme "hola", "ayuda", "comprobar permisos", "usar api", "guardar sesión", "leer sesión", "guardar base de datos", "cargar base de datos", un color o "stop"',
+  HELP: 'Puedes decirme "hola", "ayuda", "comprobar permisos", "usar api", "guardar sesión", "leer sesión", "guardar base de datos", "cargar base de datos", un color o "stop". ¿Qué dices?',
   HELLO_WORLD: 'Hola Mundo',
   GOODBYE: '¡Hasta luego!',
   HINT_HOME: 'Di "hola", "ayuda", "comprobar permisos", "usar api", "guardar sesión", "leer sesión", "guardar base de datos", "cargar base de datos", un color o "stop"',
