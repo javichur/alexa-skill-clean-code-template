@@ -187,6 +187,21 @@
         {
           "name": "AMAZON.FallbackIntent",
           "samples": []
+        },
+        {
+          "name": "ChainingIntent",
+          "samples": [
+            "encadena intento",
+            "encadena intent",
+            "cadena de intents",
+            "cadena de intentos",
+            "encadena",
+            "encadenar",
+            "cadena",
+            "encadena intentos",
+            "encadena intents",
+            "encadenamiento"
+          ]
         }
       ],
       "types": [

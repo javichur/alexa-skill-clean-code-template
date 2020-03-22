@@ -1,10 +1,10 @@
 module.exports = {
   SKILL_NAME: 'El Template',
   WELCOME_TO: 'Bienvenido a',
-  HELP: 'Puedes decirme "hola", "ayuda", "comprobar permisos", "usar api", "guardar sesión", "leer sesión", "guardar base de datos", "cargar base de datos", un color o "stop". ¿Qué dices?',
+  HELP: 'Puedes decirme por ejemplo "hola", "ayuda", "comprobar permisos", "usar api", "guardar sesión", "leer sesión", "guardar base de datos", "cargar base de datos", un color, "encadena intentos" (que saltará al intent de color con verde) o "stop". ¿Qué dices?',
   HELLO_WORLD: 'Hola Mundo',
   GOODBYE: '¡Hasta luego!',
-  HINT_HOME: 'Di "hola", "ayuda", "comprobar permisos", "usar api", "guardar sesión", "leer sesión", "guardar base de datos", "cargar base de datos", un color o "stop"',
+  HINT_HOME: 'Di "hola", "ayuda", "comprobar permisos", "usar api", "guardar sesión", "leer sesión", "guardar base de datos", "cargar base de datos", un color, "encadena intentos" (que saltará al intent de color con verde) o "stop"',
   ASK_PERMISSIONS: 'Revisa tu app móvil de Alexa para darme los permisos necesarios. ¡Hasta luego!',
   THANKS_NAME_PERMISSIONS: 'Gracias {0}, has aceptado los permisos.',
   SESSION_NOT_SAVED_YET: 'Aún no has guardado un valor en la sesión de la skill. Di "guardar sesión".',

@@ -13,10 +13,10 @@
   "homepage": "https://github.com/javichur/alexa-skill-clean-code-template",
   "license": "Apache",
   "devDependencies": {
-    "bespoken-tools": "^2.3.26",
+    "bespoken-tools": "^2.4.55",
     "eslint": "^5.3.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-import": "^2.20.1",
     "sonar-scanner": "^3.1.0"
   }
 }

@@ -5,6 +5,7 @@ const Settings = require('./settings.js');
 const AplTemplates = require('./apl/aplTemplates.js');
 const SessionState = require('./data/sessionState.js');
 const GlobalHandlers = require('./handlers/globalHandlers.js'); // ErrorHandler, SessionEnded...
+const ChainingIntentHandler = require('./handlers/chainingIntentHandler.js');
 
 const LOC = { // Se inicializa en myLocalizationInterceptor()
   t: null, // cadenas de texto localizadas.
@@ -182,7 +183,7 @@ const ColorIntentHandler = {
       && handlerInput.requestEnvelope.request.intent.name === 'ColorIntent';
   },
   handle(handlerInput) {
-    const color = handlerInput.requestEnvelope.request.intent.slots.colorSlot.value;
+    const color = Alexa.getSlotValue(handlerInput.requestEnvelope, 'colorSlot');
     const speechText = LOC.t.COLOR_SAID.replace('{0}', color);
 
     return AplTemplates.getAplTextAndHintOrVoice(handlerInput, LOC.t.SKILL_NAME, speechText,
@@ -212,8 +213,7 @@ const FallbackIntentHandler = {
       && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.FallbackIntent';
   },
   handle(handlerInput) {
-    let speakOutput = LOC.t.FALLBACK;
-    speakOutput += LOC.t.HELP;
+    const speakOutput = LOC.t.FALLBACK + LOC.t.HELP;
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
@@ -316,6 +316,8 @@ exports.handler = skillBuilder
     PurchaseHandlers.PurchaseHistoryIntentHandler,
     PurchaseHandlers.RefundProductIntentHandler,
     PurchaseHandlers.CancelProductResponseHandler,
+
+    ChainingIntentHandler.ChainingIntentHandler, // chaining to color intent
 
     GlobalHandlers.IntentReflectorHandler, // last
   )

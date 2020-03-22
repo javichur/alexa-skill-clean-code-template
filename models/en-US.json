@@ -169,6 +169,14 @@
         {
           "name": "AMAZON.FallbackIntent",
           "samples": []
+        },
+        {
+          "name": "ChainingIntent",
+          "samples": [
+            "chain",
+            "chaining",
+            "chaining intents"
+          ]
         }
       ],
       "types": [

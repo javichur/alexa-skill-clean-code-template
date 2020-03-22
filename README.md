@@ -17,6 +17,7 @@ Available on the [AWS Serverless Application Repository].
 - [x] APL touch support (ListadoItemSelected).
 - [x] In-Skill Purchases: Subscriptions and One-Time purchases (WhatCanIBuyIntent, TellMeMoreAboutProductIntent, BuyIntent, PurchaseHistoryIntent, RefundProductIntent; BuyResponseHandler and CancelProductResponseHandler).
 - [x] FallbackIntent to respond gracefully to unexpected customer requests (AMAZON.FallbackIntent).
+- [x] Chaining intents sample (ChainingIntent).
 - [x] And more...
 
 ## Initial Setup
@@ -44,6 +45,7 @@ Available on the [AWS Serverless Application Repository].
       "lambda:GetFunction",
       "lambda:UpdateFunctionCode",
       "lambda:ListFunctions",
+      "lambda:UpdateFunctionConfiguration",
       "logs:FilterLogEvents",
       "logs:getLogEvents",
       "logs:describeLogStreams"
