@@ -1,10 +1,10 @@
 module.exports = {
   SKILL_NAME: 'The Template',
   WELCOME_TO: 'Welcome to the',
-  HELP: 'You can say "hello", "help", "check permissions", "use api", "load session", "save session", "load database", "save database", a color, "chaining intents" (it will jump to the color intent with gree) or "bye".',
+  HELP: 'You can say "hello", "help", "check permissions" (first activate them for your skill in the Alexa developer console), "use api", "load session", "save session", "load database", "save database", a color, "chaining intents" (it will jump to the color intent with gree) or "bye".',
   HELLO_WORLD: 'Hello World',
   GOODBYE: 'Goodbye!',
-  HINT_HOME: 'Say "hello", "help", "check permissions", "use api", "load session", "save session", "load database", "save database", a color, "chaining intents" (it will jump to the color intent with gree) or "bye"',
+  HINT_HOME: 'Say "hello", "help", "check permissions" (first activate them for your skill in the Alexa developer console), "use api", "load session", "save session", "load database", "save database", a color, "chaining intents" (it will jump to the color intent with gree) or "bye"',
   ASK_PERMISSIONS: 'Check your Alexa mobile app to give me the permissions. See you later!',
   THANKS_NAME_PERMISSIONS: 'Thanks you {0}, you have accepted the permissions.',
   SESSION_NOT_SAVED_YET: 'You haven\'t saved a value in the skill session yet. Say "save session".',

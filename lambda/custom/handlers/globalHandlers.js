@@ -1,6 +1,20 @@
 /* eslint-disable  no-console */
 module.exports = {
 
+  CancelAndStopIntentHandler: {
+    canHandle(handlerInput) {
+      return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+        && (handlerInput.requestEnvelope.request.intent.name === 'AMAZON.CancelIntent'
+          || handlerInput.requestEnvelope.request.intent.name === 'AMAZON.StopIntent');
+    },
+    handle(handlerInput) {
+      return handlerInput.responseBuilder
+        .speak(handlerInput.t.GOODBYE)
+        .withShouldEndSession(true) // required to end session with APL support.
+        .getResponse();
+    },
+  },
+
   SessionEndedRequestHandler: {
     canHandle(handlerInput) {
       return handlerInput.requestEnvelope.request.type === 'SessionEndedRequest';
@@ -42,6 +56,25 @@ module.exports = {
       return handlerInput.responseBuilder
         .speak(speechText)
         // .reprompt('add a reprompt if you want to keep the session open for the user to respond')
+        .getResponse();
+    },
+  },
+
+  /* FallbackIntent is the intent launched when the user says
+   * something out of the context of the other intents.
+   * Note: "handlerInput.t" strings are initialized in the myLocalizationInterceptor.
+   */
+  FallbackIntentHandler: {
+    canHandle(handlerInput) {
+      return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+        && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.FallbackIntent';
+    },
+    handle(handlerInput) {
+      const speakOutput = handlerInput.t.FALLBACK + handlerInput.t.HELP;
+
+      return handlerInput.responseBuilder
+        .speak(speakOutput)
+        .reprompt(speakOutput)
         .getResponse();
     },
   },

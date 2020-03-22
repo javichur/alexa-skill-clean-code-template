@@ -9,7 +9,6 @@ const p = {
   methodPostRefund: null, // ejecutado tras solicitar cancelación compra, parámetro handlerInput
   speakPostPurchase: null, // speek tras la compra
   speakPostRefund: null, // speak tras solicitar cancelar una compra
-  LOC: null, // strings
 
   isProduct(product) {
     return product && product.length > 0;
@@ -53,6 +52,7 @@ const p = {
   //   return randomItem;
   // },
 
+  // Note: "handlerInput.t" strings are initialized in the myLocalizationInterceptor.
   makeUpsellByProductId(handlerInput, productId) {
     console.log('debug: makeUpsellByProductId');
     const { locale } = handlerInput.requestEnvelope.request;
@@ -61,12 +61,13 @@ const p = {
       // Filter the list of products available for purchase to find the product with the
       // reference name idProduct
       const oneProduct = res.inSkillProducts.filter(record => record.referenceName === productId);
-      return p.makeUpsell(p.LOC.t.I_RECOMMEND_THIS, oneProduct, handlerInput);
+      return p.makeUpsell(handlerInput.t.I_RECOMMEND_THIS, oneProduct, handlerInput);
     });
   },
 
+  // Note: "handlerInput.t" strings are initialized in the myLocalizationInterceptor.
   makeUpsell(preUpsellMessage, product, handlerInput) {
-    const reprompt = p.LOC.t.IF_YOU_ARE_READY_TO_BUY_X_SAY.replace('{0}', product[0].name);
+    const reprompt = handlerInput.t.IF_YOU_ARE_READY_TO_BUY_X_SAY.replace('{0}', product[0].name);
     const msg = `${preUpsellMessage}. ${product[0].summary}. ${reprompt}`;
 
     return AplTemplates.getAplTextAndHintOrVoice(handlerInput, product[0].name, msg,
@@ -113,6 +114,7 @@ const p = {
     return productListSpeech;
   },
 
+  // Note: "handlerInput.t" strings are initialized in the myLocalizationInterceptor.
   WhatCanIBuyIntentHandler: {
     canHandle(handlerInput) {
       return (handlerInput.requestEnvelope.request.type === 'IntentRequest'
@@ -131,16 +133,16 @@ const p = {
         // Say the list of products
         if (purchasableProducts.length > 0) {
           // One or more products are available for purchase. say the list of products
-          const speechText = p.LOC.t.PRODUCTS_AVAILABLE_TO_PURCHASE_ARE.replace('{0}',
+          const speechText = handlerInput.t.PRODUCTS_AVAILABLE_TO_PURCHASE_ARE.replace('{0}',
             p.getSpeakableListOfProducts(purchasableProducts));
 
-          return AplTemplates.getAplTextAndHintOrVoice(handlerInput, p.LOC.t.SKILL_NAME,
-            speechText, p.LOC.t.TRY_BUY_AND_PRODUCT_NAME, speechText);
+          return AplTemplates.getAplTextAndHintOrVoice(handlerInput, handlerInput.t.SKILL_NAME,
+            speechText, handlerInput.t.TRY_BUY_AND_PRODUCT_NAME, speechText);
         }
         // no products are available for purchase. Ask if they would like to hear another greeting
-        const speechText = `${p.LOC.t.NO_PRODUCTS_TO_OFFER}. ${p.speakPostPurchase}`;
-        return AplTemplates.getAplTextAndHintOrVoice(handlerInput, p.LOC.t.SKILL_NAME,
-          speechText, p.LOC.t.TRY_ORDER_HISTORY, speechText);
+        const speechText = `${handlerInput.t.NO_PRODUCTS_TO_OFFER}. ${p.speakPostPurchase}`;
+        return AplTemplates.getAplTextAndHintOrVoice(handlerInput, handlerInput.t.SKILL_NAME,
+          speechText, handlerInput.t.TRY_ORDER_HISTORY, speechText);
       });
     },
   },
@@ -148,7 +150,8 @@ const p = {
   /**
    * Diálogo de Buy o Upsell
    * @param {*} handlerInput
-   * @param {bool} isUpsell Indica si hay que mostrar pregunta de upsell (true) o de compra (false)
+   * @param {bool} isUpsell Indica si hay que mostrar pregunta de upsell (true) o de compra (false).
+   * Note: "handlerInput.t" strings are initialized in the myLocalizationInterceptor.
    */
   makeUpsellOrBuyOfferIfNotBought(handlerInput, isUpsell) {
     const { locale } = handlerInput.requestEnvelope.request;
@@ -169,14 +172,15 @@ const p = {
       const oneProduct = res.inSkillProducts.filter(record => record.referenceName === idProduct);
       if (this.isEntitled(oneProduct)) {
         // Customer has bought the product. They don't need to buy it
-        const speechText = `${p.LOC.t.YOU_HAVE_ALREADY_BOUGHT_THE} ${displayNameProduct}. ${p.LOC.t.ASK_WHAT_CAN_I_BUY_OR_HELP}`;
-        return AplTemplates.getAplTextAndHintOrVoice(handlerInput, p.LOC.t.SKILL_NAME,
-          speechText, p.LOC.t.ASK_WHAT_CAN_I_BUY_OR_HELP, speechText);
+        const speechText = `${handlerInput.t.YOU_HAVE_ALREADY_BOUGHT_THE} ${displayNameProduct}. 
+          ${handlerInput.t.ASK_WHAT_CAN_I_BUY_OR_HELP}`;
+        return AplTemplates.getAplTextAndHintOrVoice(handlerInput, handlerInput.t.SKILL_NAME,
+          speechText, handlerInput.t.ASK_WHAT_CAN_I_BUY_OR_HELP, speechText);
       }
       // Customer hasn't bought this product yet.
       // Make the upsell / buy offer
       if (isUpsell) {
-        return this.makeUpsell(p.LOC.t.SURE, oneProduct, handlerInput);
+        return this.makeUpsell(handlerInput.t.SURE, oneProduct, handlerInput);
       }
       return this.makeBuyOffer(oneProduct, handlerInput);
     });
@@ -212,10 +216,11 @@ const p = {
       speechText += this.speakPostPurchase;
     }
 
-    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, p.LOC.t.SKILL_NAME,
+    return AplTemplates.getAplTextAndHintOrVoice(handlerInput, handlerInput.t.SKILL_NAME,
       speechText, this.speakPostPurchase, speechText);
   },
 
+  // Note: "handlerInput.t" strings are initialized in the myLocalizationInterceptor.
   BuyResponseHandler: {
     canHandle(handlerInput) {
       return handlerInput.requestEnvelope.request.type === 'Connections.Response'
@@ -234,16 +239,17 @@ const p = {
           // check the Buy status - accepted, declined, already purchased, or something went wrong.
           switch (handlerInput.requestEnvelope.request.payload.purchaseResult) {
             case 'ACCEPTED':
-              preSpeechText = p.LOC.t.ENJOY_YOUR_X_PURCHASE.replace('{0}', product[0].name);
+              preSpeechText = handlerInput.t.ENJOY_YOUR_X_PURCHASE.replace('{0}', product[0].name);
               break;
             case 'DECLINED':
               preSpeechText = 'No Problem.';
               break;
             case 'ALREADY_PURCHASED':
-              preSpeechText = `${p.LOC.t.YOU_HAVE_ALREADY_BOUGHT_THE} ${product[0].name}.`;
+              preSpeechText = `${handlerInput.t.YOU_HAVE_ALREADY_BOUGHT_THE} ${product[0].name}.`;
               break;
             default:
-              preSpeechText = p.LOC.t.SOMETHING_UNEXPECTED_BUYING.replace('{0}', product[0].name);
+              preSpeechText = handlerInput.t.SOMETHING_UNEXPECTED_BUYING
+                .replace('{0}', product[0].name);
               break;
           }
           // respond back to the customer
@@ -252,12 +258,13 @@ const p = {
         // Request Status Code NOT 200. Something has failed with the connection.
         console.log(`Connections.Response indicated failure. error: + ${handlerInput.requestEnvelope.request.status.message}`);
         return handlerInput.responseBuilder
-          .speak(p.LOC.t.ERROR_HANDLING_REQUEST)
+          .speak(handlerInput.t.ERROR_HANDLING_REQUEST)
           .getResponse();
       });
     },
   },
 
+  // Note: "handlerInput.t" strings are initialized in the myLocalizationInterceptor.
   PurchaseHistoryIntentHandler: {
     canHandle(handlerInput) {
       return (handlerInput.requestEnvelope.request.type === 'IntentRequest'
@@ -269,17 +276,19 @@ const p = {
       return monetizationClient.getInSkillProducts(locale).then((result) => {
         const entitledProducts = p.getAllEntitledProducts(result.inSkillProducts);
         if (entitledProducts && entitledProducts.length > 0) {
-          const speechText = `${p.LOC.t.BOUGHT_LIST} ${p.getSpeakableListOfProducts(entitledProducts)}. ${p.LOC.t.HOW_CAN_I_HELP}`;
-          return AplTemplates.getAplTextAndHintOrVoice(handlerInput, p.LOC.t.SKILL_NAME,
-            speechText, p.LOC.t.ASK_WHAT_CAN_I_BUY_OR_HELP, speechText);
+          const speechText = `${handlerInput.t.BOUGHT_LIST} 
+            ${p.getSpeakableListOfProducts(entitledProducts)}. ${handlerInput.t.HOW_CAN_I_HELP}`;
+          return AplTemplates.getAplTextAndHintOrVoice(handlerInput, handlerInput.t.SKILL_NAME,
+            speechText, handlerInput.t.ASK_WHAT_CAN_I_BUY_OR_HELP, speechText);
         }
-        const speechText = p.LOC.t.YOU_HAVE_NOT_PURCHASED_ANYTHING;
-        return AplTemplates.getAplTextAndHintOrVoice(handlerInput, p.LOC.t.SKILL_NAME,
-          speechText, p.LOC.t.ASK_WHAT_CAN_I_BUY_OR_HELP, speechText);
+        const speechText = handlerInput.t.YOU_HAVE_NOT_PURCHASED_ANYTHING;
+        return AplTemplates.getAplTextAndHintOrVoice(handlerInput, handlerInput.t.SKILL_NAME,
+          speechText, handlerInput.t.ASK_WHAT_CAN_I_BUY_OR_HELP, speechText);
       });
     },
   },
 
+  // Note: "handlerInput.t" strings are initialized in the myLocalizationInterceptor.
   RefundProductIntentHandler: {
     canHandle(handlerInput) {
       return (
@@ -307,9 +316,9 @@ const p = {
         );
 
         if (!p.isProduct(oneProduct)) { // si no se encuentra el producto...
-          const speechText = p.LOC.t.I_DIDNT_CATCH;
-          return AplTemplates.getAplTextAndHintOrVoice(handlerInput, p.LOC.t.SKILL_NAME,
-            speechText, p.LOC.t.ASK_WHAT_CAN_I_BUY_OR_HELP, speechText, false);
+          const speechText = handlerInput.t.I_DIDNT_CATCH;
+          return AplTemplates.getAplTextAndHintOrVoice(handlerInput, handlerInput.t.SKILL_NAME,
+            speechText, handlerInput.t.ASK_WHAT_CAN_I_BUY_OR_HELP, speechText, false);
         }
 
         return handlerInput.responseBuilder
@@ -328,6 +337,7 @@ const p = {
     },
   },
 
+  // Note: "handlerInput.t" strings are initialized in the myLocalizationInterceptor.
   CancelProductResponseHandler: {
     canHandle(handlerInput) {
       return (
@@ -381,14 +391,14 @@ const p = {
               break;
           }
 
-          return AplTemplates.getAplTextAndHintOrVoice(handlerInput, p.LOC.t.SKILL_NAME,
-            speechText, p.LOC.t.ASK_WHAT_CAN_I_BUY_OR_HELP, speechText);
+          return AplTemplates.getAplTextAndHintOrVoice(handlerInput, handlerInput.t.SKILL_NAME,
+            speechText, handlerInput.t.ASK_WHAT_CAN_I_BUY_OR_HELP, speechText);
         }
         // Something failed.
         console.log(`Connections.Response indicated failure. error: ${handlerInput.requestEnvelope.request.status.message}`);
 
         return handlerInput.responseBuilder
-          .speak(p.LOC.t.ERROR_HANDLING_REQUEST)
+          .speak(handlerInput.t.ERROR_HANDLING_REQUEST)
           .getResponse();
       });
     },
