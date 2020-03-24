@@ -11,6 +11,7 @@ const GlobalHandlers = require('./handlers/globalHandlers.js'); // ErrorHandler,
 const PermissionHandler = require('./handlers/permissionHandler.js');
 const ChainingIntentHandler = require('./handlers/chainingIntentHandler.js');
 const ApiHandlers = require('./handlers/apiHandlers.js');
+const dynamicEntitiesHandlers = require('./handlers/dynamicEntitiesIntentHandlers.js');
 
 function initializeSkill(handlerInput) {
   SessionState.setCurrentState(handlerInput, SessionState.STATES.LAUNCH);
@@ -142,6 +143,10 @@ exports.handler = skillBuilder
     PurchaseHandlers.CancelProductResponseHandler,
 
     ChainingIntentHandler.ChainingIntentHandler, // chaining to color intent
+
+    dynamicEntitiesHandlers.UpdateJokeCategoriesIntentHandler, // dynamic entity sample
+    dynamicEntitiesHandlers.ClearDynamicEntitiesIntentHandler,
+    dynamicEntitiesHandlers.TellJokeIntentHandler,
 
     GlobalHandlers.CancelAndStopIntentHandler,
     GlobalHandlers.FallbackIntentHandler, // to Respond Gracefully to Unexpected Customer Requests

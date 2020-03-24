@@ -202,6 +202,40 @@
             "encadena intents",
             "encadenamiento"
           ]
+        },
+        {
+          "name": "UpdateJokeCategoriesIntent",
+          "slots": [],
+          "samples": [
+            "carga los valores de la entidad dinámica",
+            "lee los valores del slot dinámico",
+            "carga los valores del slot dinámico",
+            "actualiza los valores del slot dinámico"
+          ]
+        },
+        {
+          "name": "ClearDynamicEntitiesIntent",
+          "slots": [],
+          "samples": [
+            "borra el slot dinámico",
+            "limpia el slot dinámico",
+            "limpia los valores del slot dinámico",
+            "borra los valores del slot dinámico"
+          ]
+        },
+        {
+          "name": "TellJokeIntent",
+          "slots": [
+            {
+              "name": "dynamicSlot",
+              "type": "MyDynamicEntitySlot"
+            }
+          ],
+          "samples": [
+            "cuéntame un chiste de tipo {dynamicSlot}",
+            "cuenta un chiste de tipo {dynamicSlot}",
+            "cuéntame un chiste de {dynamicSlot}"
+          ]
         }
       ],
       "types": [
@@ -225,6 +259,16 @@
                   "Paquete de más productos",
                   "productos sin límite"
                 ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "MyDynamicEntitySlot",
+          "values": [
+            {
+              "name": {
+                "value": "none"
               }
             }
           ]

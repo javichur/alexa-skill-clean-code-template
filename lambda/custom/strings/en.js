@@ -1,10 +1,9 @@
-module.exports = {
+const p = {
   SKILL_NAME: 'The Template',
   WELCOME_TO: 'Welcome to the',
-  HELP: 'You can say "hello", "help", "check permissions" (first activate them for your skill in the Alexa developer console), "use api", "load session", "save session", "load database", "save database", a color, "chaining intents" (it will jump to the color intent with gree) or "bye".',
+  SAMPLES: '"hello", "help", "check permissions" (first activate them for your skill in the Alexa developer console), "use api", "load session", "save session", "load database", "save database", a color, "chaining intents" (it will jump to the color intent with green), "load the dynamic slot values", "clear dynamic slot values", "tell me a joke about animals" (animals is a dynamic value of the slot) or "bye"',
   HELLO_WORLD: 'Hello World',
   GOODBYE: 'Goodbye!',
-  HINT_HOME: 'Say "hello", "help", "check permissions" (first activate them for your skill in the Alexa developer console), "use api", "load session", "save session", "load database", "save database", a color, "chaining intents" (it will jump to the color intent with gree) or "bye"',
   ASK_PERMISSIONS: 'Check your Alexa mobile app to give me the permissions. See you later!',
   THANKS_NAME_PERMISSIONS: 'Thanks you {0}, you have accepted the permissions.',
   SESSION_NOT_SAVED_YET: 'You haven\'t saved a value in the skill session yet. Say "save session".',
@@ -36,4 +35,36 @@ module.exports = {
   SURE: 'Sure',
   TRY_ORDER_HISTORY: 'Try "Order history" or "Help".',
   TRY_BUY_AND_PRODUCT_NAME: 'Try "Buy" followed by the product name',
+
+  DYNAMIC_ENTITIES_CLEANED: 'Dynamic entities cleaned. ',
+  DYNAMIC_ENTITIES_UPDATED: 'Dynamic entities updated. ',
+  HINT_DYNAMIC_ENTITY: 'Try "tell me a joke about animals".',
+  SLOT_VALUE_SAID: 'The slot value is "{0}"',
+  DYNAMIC_ENTITIES_VALUES: [
+    {
+      id: 'animales',
+      name: {
+        value: 'animals',
+        synonyms: ['animal', 'bugs'],
+      },
+    },
+    {
+      id: 'medicos',
+      name: {
+        value: 'doctor',
+        synonyms: ['doctors', 'medical'],
+      },
+    },
+    {
+      id: 'comida',
+      name: {
+        value: 'food',
+        synonyms: ['foods', 'eat', 'meal', 'lunch'],
+      },
+    },
+  ],
 };
+p.HELP = `You can say ${p.SAMPLES}`;
+p.HINT_HOME = `Say ${p.SAMPLES}`;
+
+module.exports = p;

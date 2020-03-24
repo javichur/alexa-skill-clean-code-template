@@ -1,10 +1,9 @@
-module.exports = {
+const p = {
   SKILL_NAME: 'El Template',
   WELCOME_TO: 'Bienvenido a',
-  HELP: 'Puedes decirme por ejemplo "hola", "ayuda", "comprobar permisos" (actívalos primero en la consola de developer alexa), "usar api", "guardar sesión", "leer sesión", "guardar base de datos", "cargar base de datos", un color, "encadena intentos" (que saltará al intent de color con verde) o "stop". ¿Qué dices?',
+  SAMPLES: '"hola", "ayuda", "comprobar permisos" (actívalos primero en la consola de developer alexa), "usar api", "guardar sesión", "leer sesión", "guardar base de datos", "cargar base de datos", un color, "encadena intentos" (que saltará al intent de color con verde), "carga los valores del slot dinámico", "limpia el slot dinámico", "cuéntame un chiste de tipo animales" (animales es el valor del slot dinámico) o "stop"',
   HELLO_WORLD: 'Hola Mundo',
   GOODBYE: '¡Hasta luego!',
-  HINT_HOME: 'Di "hola", "ayuda", "comprobar permisos" (actívalos primero para tu skill en la consola de developer alexa), "usar api", "guardar sesión", "leer sesión", "guardar base de datos", "cargar base de datos", un color, "encadena intentos" (que saltará al intent de color con verde) o "stop"',
   ASK_PERMISSIONS: 'Revisa tu app móvil de Alexa para darme los permisos necesarios. ¡Hasta luego!',
   THANKS_NAME_PERMISSIONS: 'Gracias {0}, has aceptado los permisos.',
   SESSION_NOT_SAVED_YET: 'Aún no has guardado un valor en la sesión de la skill. Di "guardar sesión".',
@@ -12,6 +11,9 @@ module.exports = {
   SESSION_SAVED: 'Acabo de guardar el valor {0} en la sesión de la skill. Di "leer sesión".',
   COLOR_SAID: 'Has dicho el color {0}',
   FALLBACK: 'No entiendo lo que quieres decir en este contexto. ',
+
+  SPEAK_POST_PURCHASE: 'Di "ayuda" para más info', // edit this
+  SPEAK_POST_REFUND: 'Di "ayuda" para más info', // edit this
 
   /* purchase strings */
   I_RECOMMEND_THIS: 'Te recomiendo esto',
@@ -33,4 +35,37 @@ module.exports = {
   SURE: 'Claro',
   TRY_ORDER_HISTORY: 'Di "histórico de compras" o "ayuda".',
   TRY_BUY_AND_PRODUCT_NAME: 'Di "Comprar" seguido del nombre del producto',
+
+  // Dynamic entities (slots)
+  DYNAMIC_ENTITIES_CLEANED: 'Entidades dinámicas borradas. ',
+  DYNAMIC_ENTITIES_UPDATED: 'Entidades dinámicas actualizadas. ',
+  HINT_DYNAMIC_ENTITY: 'Di "cuéntame un chiste de animales".',
+  SLOT_VALUE_SAID: 'El valor del slot es "{0}"',
+  DYNAMIC_ENTITIES_VALUES: [
+    {
+      id: 'animales',
+      name: {
+        value: 'animales',
+        synonyms: ['animal', 'bichos'],
+      },
+    },
+    {
+      id: 'medicos',
+      name: {
+        value: 'médico',
+        synonyms: ['médicos', 'médica', 'médicas'],
+      },
+    },
+    {
+      id: 'comida',
+      name: {
+        value: 'comida',
+        synonyms: ['comidas', 'alimento', 'alimentos', 'comer'],
+      },
+    },
+  ],
 };
+p.HELP = `Puedes decirme por ejemplo ${p.SAMPLES}. ¿Qué dices?`;
+p.HINT_HOME = `Di ${p.SAMPLES}`;
+
+module.exports = p;

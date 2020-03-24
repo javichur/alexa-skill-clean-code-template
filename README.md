@@ -18,6 +18,7 @@ Available on the [AWS Serverless Application Repository].
 - [x] In-Skill Purchases: Subscriptions and One-Time purchases (WhatCanIBuyIntent, TellMeMoreAboutProductIntent, BuyIntent, PurchaseHistoryIntent, RefundProductIntent; BuyResponseHandler and CancelProductResponseHandler).
 - [x] FallbackIntent to respond gracefully to unexpected customer requests (AMAZON.FallbackIntent).
 - [x] Chaining intents sample (ChainingIntent).
+- [x] Dynamic entities / slots (UpdateJokeCategoriesIntent, ClearDynamicEntitiesIntent).
 - [x] And more...
 
 ## Initial Setup

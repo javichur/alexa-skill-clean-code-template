@@ -177,6 +177,40 @@
             "chaining",
             "chaining intents"
           ]
+        },
+        {
+          "name": "UpdateJokeCategoriesIntent",
+          "slots": [],
+          "samples": [
+            "load the values of the dynamic entity",
+            "read dynamic slot values",
+            "load the dynamic slot values",
+            "update the dynamic slot values"
+          ]
+        },
+        {
+          "name": "ClearDynamicEntitiesIntent",
+          "slots": [],
+          "samples": [
+            "delete dynamic slot",
+            "clean dynamic slot",
+            "clear dynamic slot values",
+            "clear dynamic slot"
+          ]
+        },
+        {
+          "name": "TellJokeIntent",
+          "slots": [
+            {
+              "name": "dynamicSlot",
+              "type": "MyDynamicEntitySlot"
+            }
+          ],
+          "samples": [
+            "tell me a {dynamicSlot} joke",
+            "tell me a joke about {dynamicSlot}",
+            "tell a joke about {dynamicSlot}"
+          ]
         }
       ],
       "types": [
@@ -197,6 +231,16 @@
                   "more items",
                   "Pack of extra products"
                 ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "MyDynamicEntitySlot",
+          "values": [
+            {
+              "name": {
+                "value": "none"
               }
             }
           ]

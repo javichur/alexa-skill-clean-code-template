@@ -10,4 +10,6 @@ module.exports = {
   ID_PRODUCT_ISP: 'nameproductpurchase', // isp name
   NUM_FREE_ITEMS: 3, // num de items que permites usar gratis.
   UPSELL_EACH_N_TIMES: 5, // cada cuántas iteraciones sugieres la compra
+
+  DYNAMIC_SLOT_NAME: 'MyDynamicEntitySlot',
 };
