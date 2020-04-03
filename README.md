@@ -2,7 +2,7 @@
 
 <https://github.com/javichur/alexa-skill-clean-code-template>
 
-Alexa Skill Template with clean code (eslint, sonar), testing (unit tests, e2e), multi-language, Alexa Presentation Language (APL) and In-Skill Purchases support.
+Alexa Skill Template with clean code (eslint, sonar), testing (unit tests, e2e), multi-language, Alexa Presentation Language (APL), In-Skill Purchases support (ISP) and more.
 
 Made with ❤️ by Javier Campos (<https://javiercampos.es>)
 Available on the [AWS Serverless Application Repository].
@@ -94,32 +94,36 @@ ask deploy
 
 ## How to take advantage of this template
 
-1. Control your Code Style using Airbnb eslint rules:
+1. Deploy the skill easily with cli:
+
+```shell
+ask deploy
+```
+
+2. Multi-language. Add text strings for all languages in `strings` folder.
+
+3. Handlers organized in the `/handlers` folder to quickly find the samples:
+API calls, chaining intents, APL touch events, dynamic entities, dynamoDB, session,
+in skill purchases (ISP), get user permissions, other global handlers...
+
+4. Control your Code Style using Airbnb eslint rules:
 
   ```shell
   npm run eslint
   ```
 
-2. Control the quality of your code using SonarQube (I assume Sonar running on localhost:9000):
+5. Control the quality of your code using SonarQube (I assume Sonar running on localhost:9000):
 
 ```shell
 npm run sonar
 start http://localhost:9000/dashboard?id=my-new-skill
 ```
 
-3. Add text strings for all languages in `strings` folder.
-
-4. Use vscode and press `F5` to start Unit Tests and **debug with breakpoints in your code**.
+6. Use vscode and press `F5` to start Unit Tests and **debug with breakpoints in your code**.
 
 Or use `npm run unit-test`
 
-5. Deploy the skill easily with cli:
-
-```shell
-ask deploy
-```
-
-6. Run e2e tests. Use `npm run e2e-test`. You must get a free access token for a virtual device in <https://apps.bespoken.io/dashboard/virtualdevice> and paste it in `testing.json` file.
+7. Run e2e tests. Use `npm run e2e-test`. You must get a free access token for a virtual device in <https://apps.bespoken.io/dashboard/virtualdevice> and paste it in `testing.json` file.
 
 ## How this template was created from Amazon-provided "Hello world" template
 
