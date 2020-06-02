@@ -30,10 +30,6 @@
     },
     "apis": {
       "custom": {
-        "endpoint": {
-          "sourceDir": "lambda/custom",
-          "uri": "ask-custom-clean-code-skill-template-default"
-        },
         "interfaces": [
           {
             "type": "ALEXA_PRESENTATION_APL",
@@ -80,15 +76,7 @@
               }
             ]
           }
-        ],
-        "regions": {
-          "EU": {
-            "endpoint": {
-              "sourceDir": "lambda/custom",
-              "uri": "ask-custom-clean-code-skill-template-default"
-            }
-          }
-        }
+        ]
       }
     },
     "manifestVersion": "1.0"
