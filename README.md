@@ -1,5 +1,7 @@
 # alexa-skill-clean-code-template
 
+(Updated to v2 ask-cli)
+
 <https://github.com/javichur/alexa-skill-clean-code-template>
 
 Alexa Skill Template with clean code (eslint, sonar), testing (unit tests, e2e), multi-language, Alexa Presentation Language (APL), In-Skill Purchases support (ISP) and more.
@@ -25,11 +27,17 @@ Available on the [AWS Serverless Application Repository].
 
 1. Install ASK CLI (`npm install -g ask-cli`)
 
-2. Install Visual Code (<https://code.visualstudio.com/)>
+2. For Windows users, please fix Powershell problem once (more info <https://github.com/alexa/ask-cli/blob/develop/docs/FAQ.md#q-for-windows-users-if-your-skill-return-empty-response-and-log-shows-module-not-found-genericerrormapper-or-cannot-find-module-dispatchererrormappergenericerrormapper-how-to-resolve>):
 
-3. Install Alexa Skill Kit (ASK) Toolkit for vscode (<https://marketplace.visualstudio.com/items?itemName=ask-toolkit.alexa-skills-kit-toolkit>)
+```shell
+Install-Module Microsoft.PowerShell.Archive -MinimumVersion 1.2.3.0 -Repository PSGallery -Force -Scope CurrentUser
+```
 
-4. You must edit ~/.aws/credentials file to add a valid AWS profile (aws_access_key_id, aws_secret_access_key) with the following policy. You must create a IAM user with this policy (<https://console.aws.amazon.com/iam/>):
+3. Install Visual Code (<https://code.visualstudio.com/)>
+
+4. Install Alexa Skill Kit (ASK) Toolkit for vscode (<https://marketplace.visualstudio.com/items?itemName=ask-toolkit.alexa-skills-kit-toolkit>)
+
+5. You must edit ~/.aws/credentials file to add a valid AWS profile (aws_access_key_id, aws_secret_access_key) with the following policy. You must create a IAM user with this policy (<https://console.aws.amazon.com/iam/>):
 
 ```json
 {
@@ -66,15 +74,19 @@ More info:
 1. Configure ASK CLI with AWS profile (credentials):
 
 ```shell
-ask init
+ask configure
 ```
+
+*(The old `ask init` command has been removed in ask-cli v2).*
 
 2. Create a new skill from this template (<https://github.com/javichur/alexa-skill-clean-code-template>):
 
 ```shell
-ask new --url https://github.com/javichur/alexa-skill-clean-code-template.git
+ask new --template-url https://github.com/javichur/alexa-skill-clean-code-template.git
 ? Please type in your new skill name, alphanumeric only: my-new-skill
 ```
+
+*(The old command `ask new --url` has been removed in ask-cli v2).*
 
 3. Install dependencies:
 
@@ -130,7 +142,7 @@ Or use `npm run unit-test`
 1. Configure ASK CLI with AWS profile (credentials):
 
 ```shell
-ask init
+ask configure
 ```
 
 You must edit ~/.aws/credentials file to add a valid AWS profile (aws_access_key_id, aws_secret_access_key, region). More info: <https://docs.aws.amazon.com/es_es/cli/latest/userguide/cli-chap-configure.html>
@@ -195,7 +207,7 @@ The `ask deploy` command invokes hooks in order to install dependencies.
 
 5. Test interaction model using `Utterance Profiler` (<https://developer.amazon.com/alexa/console/ask>)
 
-6. Test your skill using **interactive** `ask dialog` (beta)
+6. Test your skill using **interactive** `ask dialog`
 
 ```shell
 ask dialog --locale "en-US"
@@ -209,10 +221,10 @@ Alexa >  Hello World!
 
 7. Test your skill using simulator (<https://developer.amazon.com/alexa/console/ask>)
 
-8. Test JSON request/response using `ask simulate`
+8. (Removed in ASK-CLI V2) Test JSON request/response using `ask simulate`
 
 ```shell
-ask simulate --locale "en-US" --text "start hello world"
+(Removed) ask simulate --locale "en-US" --text "start hello world"
 ```
 
 9. Automating Unit Tests using Bespoken Tools. `.vscode/launch.json` edited.
@@ -372,8 +384,29 @@ $> unrestricted
 
 ## Useful commands
 
-1. Download a skill. it allows you to download a complete skill (including skill.json) created in your Alexa developer account.
+ASK CLI v1 to v2 Migration Guide:
+<https://developer.amazon.com/es-ES/docs/alexa/smapi/ask-cli-v1-to-v2-migration-guide.html>
+
+Check ask-cli version:
 
 ```shell
-ask clone --skill-id xxxxxxxxxxxxxxx
+ask -v
+```
+
+Add testers to a beta test for the given Alexa skill:
+
+```shell
+ask smapi add-testers-to-beta-test -s <skill-id> --testers-emails <testers-emails-separated-by-commas>
+```
+
+Test your alexa skill:
+
+```shell
+ask dialog -l en-US
+```
+
+For Windows users, please fix the PowerShell problem once if your skill return empty response, and log shows "Module not found: GenericErrorMapper" or "Cannot find module './dispatcher/error/mapper/GenericErrorMapper'" (more info <https://github.com/alexa/ask-cli/blob/develop/docs/FAQ.md#q-for-windows-users-if-your-skill-return-empty-response-and-log-shows-module-not-found-genericerrormapper-or-cannot-find-module-dispatchererrormappergenericerrormapper-how-to-resolve>):
+
+```shell
+Install-Module Microsoft.PowerShell.Archive -MinimumVersion 1.2.3.0 -Repository PSGallery -Force -Scope CurrentUser
 ```
