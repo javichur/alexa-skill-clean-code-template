@@ -88,20 +88,29 @@ ask new --template-url https://github.com/javichur/alexa-skill-clean-code-templa
 
 *(The old command `ask new --url` has been removed in ask-cli v2).*
 
-3. Install dependencies:
+3. Select your AWS region and nodejs version in `ask-resources.json` file.
+
+4. Install dependencies:
 
 ```shell
 cd my-new-skill/lambda/custom
 npm install
 ```
 
-4. Develop your awesome Alexa Skill! Take advantage of this template!
+5. Develop your awesome Alexa Skill! Take advantage of this template!
 
-5. Deploy the skill easily with cli:
+6. Deploy the skill easily with cli:
 
 ```shell
 cd my-new-skill
 ask deploy
+```
+
+7. Test your skill:
+
+```shell
+ask dialog -l en-US
+> open <your invocation name>
 ```
 
 ## How to take advantage of this template
