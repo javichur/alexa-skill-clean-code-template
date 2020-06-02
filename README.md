@@ -82,8 +82,14 @@ ask configure
 2. Create a new skill from this template (<https://github.com/javichur/alexa-skill-clean-code-template>):
 
 ```shell
-ask new --template-url https://github.com/javichur/alexa-skill-clean-code-template.git
-? Please type in your new skill name, alphanumeric only: my-new-skill
+ask new --template-url https://github.com/javichur/alexa-skill-clean-code-template.git --template-branch master
+? Choose a method to host your skill's backend resources:  AWS Lambda
+? Would you like to continue download the skill template?  Yes
+? Please type in your skill name:  my-new-skill
+? Please type in your folder name for the skill project (alphanumeric):  my-new-skill
+Project for skill "my-new-skill" is successfully created at \my-new-skill
+
+Project initialized with deploy delegate "@ask-cli/lambda-deployer" successfully.
 ```
 
 *(The old command `ask new --url` has been removed in ask-cli v2).*
