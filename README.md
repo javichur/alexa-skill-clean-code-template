@@ -35,7 +35,7 @@ Install-Module Microsoft.PowerShell.Archive -MinimumVersion 1.2.3.0 -Repository 
 
 3. Install Visual Code (<https://code.visualstudio.com/)>
 
-4. Install Alexa Skill Kit (ASK) Toolkit for vscode (<https://marketplace.visualstudio.com/items?itemName=ask-toolkit.alexa-skills-kit-toolkit>)
+4. (Do not use this vscode extension with ask-cli v2) ~~Install Alexa Skill Kit (ASK) Toolkit for vscode (<https://marketplace.visualstudio.com/items?itemName=ask-toolkit.alexa-skills-kit-toolkit>)~~
 
 5. You must edit ~/.aws/credentials file to add a valid AWS profile (aws_access_key_id, aws_secret_access_key) with the following policy. You must create a IAM user with this policy (<https://console.aws.amazon.com/iam/>):
 
