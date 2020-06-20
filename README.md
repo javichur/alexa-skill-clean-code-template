@@ -387,6 +387,33 @@ Add the following code in `skill.json` and try `CheckPermisionsIntent` sample.
 
 27. In-Skill Purchases added. Check `\handlers\purchaseHandlers.js`, `index.js` and voice models. New intents have been included: WhatCanIBuyIntent, TellMeMoreAboutProductIntent, BuyIntent, PurchaseHistoryIntent, RefundProductIntent; BuyResponseHandler and CancelProductResponseHandler.
 
+28. Geolocation and automotive features. Use `AreYouACarIntent` to get this info in Alexa Auto or Alexa app:
+
+```json
+{
+    "locationServices": {
+        "status": "RUNNING",
+        "access": "ENABLED"
+    },
+    "timestamp": "2020-06-20T17:37:22Z",
+    "coordinate": {
+        "latitudeInDegrees": 0.0,
+        "longitudeInDegrees": 0.0,
+        "accuracyInMeters": 15.15
+    },
+    "altitude": {
+        "altitudeInMeters": 123,
+        "accuracyInMeters": 15.15
+    },
+    "heading": {
+        "directionInDegrees": 0
+    },
+    "speed": {
+        "speedInMetersPerSecond": 123
+    }
+}
+```
+
 ## Known problems
 
 1. Error invoking `ask deploy`: "No se puede cargar el archivo `\hooks\pre_deploy_hook.ps1` porque la ejecución de scripts está deshabilitada en este sistema". Solution:
