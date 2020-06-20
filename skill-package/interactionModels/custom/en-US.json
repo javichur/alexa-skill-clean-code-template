@@ -211,6 +211,15 @@
             "tell me a joke about {dynamicSlot}",
             "tell a joke about {dynamicSlot}"
           ]
+        },
+        {
+          "name": "AreYouACarIntent",
+          "slots": [],
+          "samples": [
+            "are you a car",
+            "are you the car",
+            "are you my car"
+          ]
         }
       ],
       "types": [

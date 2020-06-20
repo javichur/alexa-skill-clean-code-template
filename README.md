@@ -21,6 +21,7 @@ Available on the [AWS Serverless Application Repository].
 - [x] FallbackIntent to respond gracefully to unexpected customer requests (AMAZON.FallbackIntent).
 - [x] Chaining intents sample (ChainingIntent).
 - [x] Dynamic entities / slots (UpdateJokeCategoriesIntent, ClearDynamicEntitiesIntent).
+- [x] Geolocation and Alexa Auto sample intents (AreYouACarIntent), to get speed, altitude, latitude, longitude, and check if automotive.
 - [x] And more...
 
 ## Initial Setup

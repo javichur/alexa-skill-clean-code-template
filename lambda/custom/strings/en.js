@@ -1,7 +1,7 @@
 const p = {
   SKILL_NAME: 'The Template',
   WELCOME_TO: 'Welcome to the',
-  SAMPLES: '"hello", "help", "check permissions" (first activate them for your skill in the Alexa developer console), "use api", "load session", "save session", "load database", "save database", a color, "chaining intents" (it will jump to the color intent with green), "load the dynamic slot values", "clear dynamic slot values", "tell me a joke about animals" (animals is a dynamic value of the slot) or "bye"',
+  SAMPLES: '"hello", "help", "check permissions" (first activate them for your skill in the Alexa developer console), "use api", "load session", "save session", "load database", "save database", a color, "chaining intents" (it will jump to the color intent with green), "load the dynamic slot values", "clear dynamic slot values", "tell me a joke about animals" (animals is a dynamic value of the slot), "are you a car?" (first activate the location permission for your skill in the Alexa developer console) or "bye"',
   HELLO_WORLD: 'Hello World',
   GOODBYE: 'Goodbye!',
   ASK_PERMISSIONS: 'Check your Alexa mobile app to give me the permissions. See you later!',

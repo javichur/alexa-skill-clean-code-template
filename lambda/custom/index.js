@@ -12,6 +12,7 @@ const PermissionHandler = require('./handlers/permissionHandler.js');
 const ChainingIntentHandler = require('./handlers/chainingIntentHandler.js');
 const ApiHandlers = require('./handlers/apiHandlers.js');
 const dynamicEntitiesHandlers = require('./handlers/dynamicEntitiesIntentHandlers.js');
+const AutomotiveHandlers = require('./handlers/automotiveHandlers.js');
 
 function initializeSkill(handlerInput) {
   SessionState.setCurrentState(handlerInput, SessionState.STATES.LAUNCH);
@@ -126,6 +127,7 @@ exports.handler = skillBuilder
     HelpIntentHandler,
     AplUserEventHandler.EventHandler, // taps en pantalla APL (ver APL list en HelpIntentHandler)
     PermissionHandler.CheckPermissionsIntentHandler,
+    AutomotiveHandlers.AreYouACarIntentHandler,
 
     SessionHandlers.SaveSessionIntentHandler, // sample session
     SessionHandlers.LoadSessionIntentHandler,

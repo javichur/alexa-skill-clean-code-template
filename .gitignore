@@ -7,3 +7,4 @@ lambda/custom/.scannerwork/
 node_modules/
 package-lock.json
 .DS_Store
+.ask/lambda/*

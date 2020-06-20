@@ -1,6 +1,5 @@
 /* eslint-disable  no-console */
 module.exports = {
-
   ChainingIntentHandler: {
     canHandle(handlerInput) {
       return (handlerInput.requestEnvelope.request.type === 'IntentRequest'

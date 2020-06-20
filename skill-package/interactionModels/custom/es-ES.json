@@ -236,6 +236,16 @@
             "cuenta un chiste de tipo {dynamicSlot}",
             "cuéntame un chiste de {dynamicSlot}"
           ]
+        },
+        {
+          "name": "AreYouACarIntent",
+          "slots": [],
+          "samples": [
+            "eres un coche",
+            "eres un auto",
+            "eres un vehículo",
+            "eres un carro"
+          ]
         }
       ],
       "types": [

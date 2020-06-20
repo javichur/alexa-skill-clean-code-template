@@ -1,7 +1,7 @@
 const p = {
   SKILL_NAME: 'El Template',
   WELCOME_TO: 'Bienvenido a',
-  SAMPLES: '"hola", "ayuda", "comprobar permisos" (actívalos primero en la consola de developer alexa), "usar api", "guardar sesión", "leer sesión", "guardar base de datos", "cargar base de datos", un color, "encadena intentos" (que saltará al intent de color con verde), "carga los valores del slot dinámico", "limpia el slot dinámico", "cuéntame un chiste de tipo animales" (animales es el valor del slot dinámico) o "stop"',
+  SAMPLES: '"hola", "ayuda", "comprobar permisos" (actívalos primero en la consola de developer alexa), "usar api", "guardar sesión", "leer sesión", "guardar base de datos", "cargar base de datos", un color, "encadena intentos" (que saltará al intent de color con verde), "carga los valores del slot dinámico", "limpia el slot dinámico", "cuéntame un chiste de tipo animales" (animales es el valor del slot dinámico), "eres un coche?" (activa primero en la consola de developer alexa el permiso de ubicación) o "stop"',
   HELLO_WORLD: 'Hola Mundo',
   GOODBYE: '¡Hasta luego!',
   ASK_PERMISSIONS: 'Revisa tu app móvil de Alexa para darme los permisos necesarios. ¡Hasta luego!',
