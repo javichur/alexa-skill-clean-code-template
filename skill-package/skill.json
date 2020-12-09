@@ -5,7 +5,7 @@
         "en-US": {
           "summary": "Sample Alexa Skill with clean code and APL support",
           "examplePhrases": [
-            "Alexa open hello world",
+            "Alexa open the template",
             "hello",
             "help"
           ],
@@ -15,7 +15,7 @@
         "es-ES": {
           "summary": "Ejemplo de Alexa Skill con código limpio y soporte APL",
           "examplePhrases": [
-            "Alexa abre hola mundo",
+            "Alexa abre el template",
             "hola",
             "ayuda"
           ],

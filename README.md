@@ -32,6 +32,7 @@ Available on the [AWS Serverless Application Repository].
 
 ```shell
 Install-Module Microsoft.PowerShell.Archive -MinimumVersion 1.2.3.0 -Repository PSGallery -Force -Scope CurrentUser
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
 3. Install Visual Code (<https://code.visualstudio.com/)>
@@ -117,7 +118,7 @@ ask deploy
 
 ```shell
 ask dialog -l en-US
-> open <your invocation name>
+> Alexa, open <your invocation name>
 ```
 
 ## How to take advantage of this template
@@ -136,9 +137,9 @@ in skill purchases (ISP), get user permissions, other global handlers...
 
 4. Control your Code Style using Airbnb eslint rules:
 
-  ```shell
-  npm run eslint
-  ```
+```shell
+npm run eslint
+```
 
 5. Control the quality of your code using SonarQube (I assume Sonar running on localhost:9000):
 
@@ -227,7 +228,7 @@ The `ask deploy` command invokes hooks in order to install dependencies.
 
 ```shell
 ask dialog --locale "en-US"
-User  >  start hello world
+User  >  Alexa, open hello world
 Alexa >  Welcome to the Alexa Skills Kit, you can say hello!
 User  >  help
 Alexa >  You can say hello to me!
