@@ -220,6 +220,19 @@
             "are you the car",
             "are you my car"
           ]
+        },
+        {
+          "name": "PlayVideoIntent",
+          "slots": [],
+          "samples": [
+            "video please",
+            "video",
+            "I want to see the video",
+            "I want to see video",
+            "play video",
+            "play the video",
+            "watch video"
+          ]
         }
       ],
       "types": [

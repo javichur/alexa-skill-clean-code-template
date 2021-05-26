@@ -11,17 +11,18 @@ Available on the [AWS Serverless Application Repository].
 
 ## Available intents
 
-- [x] Load and save info from/to session (LoadSessionIntent, SaveSessionIntent).
-- [x] Load and save data from/to Dynamodb (LoadDynamoDBIntent, SaveDynamoDBIntent).
-- [x] Using external APIs (UseApiIntent).
-- [x] Get user info like name, email or phone (CheckPermisionsIntent).
-- [x] Using built-in slots (ColorIntent).
-- [x] APL touch support (ListadoItemSelected).
-- [x] In-Skill Purchases: Subscriptions and One-Time purchases (WhatCanIBuyIntent, TellMeMoreAboutProductIntent, BuyIntent, PurchaseHistoryIntent, RefundProductIntent; BuyResponseHandler and CancelProductResponseHandler).
-- [x] FallbackIntent to respond gracefully to unexpected customer requests (AMAZON.FallbackIntent).
-- [x] Chaining intents sample (ChainingIntent).
-- [x] Dynamic entities / slots (UpdateJokeCategoriesIntent, ClearDynamicEntitiesIntent).
-- [x] Geolocation and Alexa Auto sample intents (AreYouACarIntent), to get speed, altitude, latitude, longitude, and check if automotive.
+- [x] 💾📂 Load and save info from/to session (LoadSessionIntent, SaveSessionIntent).
+- [x] 💾📂 Load and save data from/to Dynamodb (LoadDynamoDBIntent, SaveDynamoDBIntent).
+- [x] ☁️ Using external APIs (UseApiIntent).
+- [x] 🧘 Get user info like name, email or phone (CheckPermisionsIntent).
+- [x] 🧱 Using built-in slots (ColorIntent).
+- [x] 📺 APL touch support (ListadoItemSelected).
+- [x] 💰 In-Skill Purchases: Subscriptions and One-Time purchases (WhatCanIBuyIntent, TellMeMoreAboutProductIntent, BuyIntent, PurchaseHistoryIntent, RefundProductIntent; BuyResponseHandler and CancelProductResponseHandler).
+- [x] 🐛 FallbackIntent to respond gracefully to unexpected customer requests (AMAZON.FallbackIntent).
+- [x] ⛓️ Chaining intents sample (ChainingIntent).
+- [x] 💃 Dynamic entities / slots (UpdateJokeCategoriesIntent, ClearDynamicEntitiesIntent).
+- [x] 📍 Geolocation and Alexa Auto sample intents (AreYouACarIntent), to get speed, altitude, latitude, longitude, and check if automotive.
+- [x] 📽️ Play videos in Echo Show devices / display devices.
 - [x] And more...
 
 ## Initial Setup
@@ -414,6 +415,8 @@ Add the following code in `skill.json` and try `CheckPermisionsIntent` sample.
     }
 }
 ```
+
+29. Play video feature. Use `PlayVideoIntent` to play a video in your Alexa Echo Show devices. To allow playing videos, please activate the VideoApp interface in the developer console: `Your alexa skill > Custom > Interfaces > Video App`.
 
 ## Known problems
 

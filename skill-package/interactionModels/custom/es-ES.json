@@ -246,6 +246,17 @@
             "eres un vehículo",
             "eres un carro"
           ]
+        },
+        {
+          "name": "PlayVideoIntent",
+          "slots": [],
+          "samples": [
+            "vídeo por favor",
+            "vídeo",
+            "quiero ver el vídeo",
+            "quiero ver vídeo",
+            "ver vídeo"
+          ]
         }
       ],
       "types": [

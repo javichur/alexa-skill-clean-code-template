@@ -12,4 +12,6 @@ module.exports = {
   UPSELL_EACH_N_TIMES: 5, // cada cuántas iteraciones sugieres la compra
 
   DYNAMIC_SLOT_NAME: 'MyDynamicEntitySlot',
+
+  VIDEO_URL: 'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4', // HTTPS location for videos is required.
 };

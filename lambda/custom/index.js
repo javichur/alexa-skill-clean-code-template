@@ -11,8 +11,9 @@ const GlobalHandlers = require('./handlers/globalHandlers.js'); // ErrorHandler,
 const PermissionHandler = require('./handlers/permissionHandler.js');
 const ChainingIntentHandler = require('./handlers/chainingIntentHandler.js');
 const ApiHandlers = require('./handlers/apiHandlers.js');
-const dynamicEntitiesHandlers = require('./handlers/dynamicEntitiesIntentHandlers.js');
+const DynamicEntitiesHandlers = require('./handlers/dynamicEntitiesIntentHandlers.js');
 const AutomotiveHandlers = require('./handlers/automotiveHandlers.js');
+const PlayVideoHandler = require('./handlers/playVideoHandler.js');
 
 function initializeSkill(handlerInput) {
   SessionState.setCurrentState(handlerInput, SessionState.STATES.LAUNCH);
@@ -146,9 +147,11 @@ exports.handler = skillBuilder
 
     ChainingIntentHandler.ChainingIntentHandler, // chaining to color intent
 
-    dynamicEntitiesHandlers.UpdateJokeCategoriesIntentHandler, // dynamic entity sample
-    dynamicEntitiesHandlers.ClearDynamicEntitiesIntentHandler,
-    dynamicEntitiesHandlers.TellJokeIntentHandler,
+    DynamicEntitiesHandlers.UpdateJokeCategoriesIntentHandler, // dynamic entity sample
+    DynamicEntitiesHandlers.ClearDynamicEntitiesIntentHandler,
+    DynamicEntitiesHandlers.TellJokeIntentHandler,
+
+    PlayVideoHandler.PlayVideoIntentHandler,
 
     GlobalHandlers.CancelAndStopIntentHandler,
     GlobalHandlers.FallbackIntentHandler, // to Respond Gracefully to Unexpected Customer Requests
